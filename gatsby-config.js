@@ -98,5 +98,32 @@ module.exports = {
     `gatsby-plugin-netlify`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [{
+          resolve: `gatsby-remark-vscode`,
+          options: {
+            theme: 'Abyss' // Or install your favorite theme from GitHub
+          }
+        }]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+          shortname: `gatsby-zoeaeen13`
+      }
+  },
+  {
+    resolve: `gatsby-plugin-google-fonts`,
+    options: {
+      fonts: [
+        `Noto Sans TC`,
+        `source sans pro\:300,400,500,700` // you can also specify font weights and styles
+      ],
+      display: 'swap'
+    }
+  }
   ],
 }

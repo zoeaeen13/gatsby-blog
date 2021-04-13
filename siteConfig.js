@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'London',
-  shortName: 'London',
-  description: 'A bold, minimal theme for Gatsby, focused on clean typography & beautiful imagery',
-  url: 'https://gatsby-london.netlify.com', // Domain of your site without prefix!
+  name: 'Travel in Time.',
+  shortName: 'Travel in Time.',
+  description: '',
+  url: 'https://zoeaeen13.github.io/', // Domain of your site without prefix!
   prefix: '/',
-  author: 'Imed Adel',
-  twitter: 'Imed_Adel'
+  author: 'Zoe Yu',
+  twitter: 'Zoe Yu'
 }

@@ -1,18 +1,43 @@
 import React from "react"
+import { Link } from "gatsby"
+import styled from 'styled-components'
 import { graphql, StaticQuery } from "gatsby"
-
+import Bio from '../components/bio'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import PostCard from "../components/postCard"
-
+import PostType from "../components/postType"
 // import "../utils/global.scss"
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
-//TODO: switch to staticQuery, get rid of comments, remove unnecessary components, export as draft template
+
+
+const AllButtons = styled(Link)`
+  margin: 20px 0 32px 0;
+  display: inline-block;
+  padding: 10px 24px;
+  color: #C5322E;
+  background-color: white;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: initial;
+  white-space: nowrap;
+  border: 1px solid #C5322E;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    color: white;
+    background-color: #C5322E;
+    text-decoration: none;
+  }
+`
 const BlogIndex = ({ data }, location) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  let postCounter = 0
+  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog')
+  const diarys = posts.filter(node => node.node.frontmatter.type === 'diary')
 
   return (
     <Layout title={siteTitle}>
@@ -20,26 +45,10 @@ const BlogIndex = ({ data }, location) => {
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
-      {/* <Bio /> */}
-      {data.site.siteMetadata.description && (
-        <header className="page-head">
-          <h2 className="page-head-title">
-            {data.site.siteMetadata.description}
-          </h2>
-        </header>
-      )}
+      <Bio />
       <div className="post-feed">
-        {posts.map(({ node }) => {
-          postCounter++
-          return (
-            <PostCard
-              key={node.fields.slug}
-              count={postCounter}
-              node={node}
-              postClass={`post`}
-            />
-          )
-        })}
+        <PostType type={'Featured Posts'} posts={blogs}/>
+        <AllButtons>All Posts →</AllButtons>
       </div>
     </Layout>
   )
@@ -61,9 +70,12 @@ const indexQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "DD MMM, YYYY")
             title
+            type
             description
+            tags
+            category
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {

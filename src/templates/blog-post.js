@@ -1,57 +1,69 @@
 import React from "react"
+import styled from 'styled-components'
+import { Link } from 'gatsby'
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
-
+import 'gatsby-remark-vscode/styles.css';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Tag from "../components/tag"
+import Intro from "../components/intro"
+import { DiscussionEmbed } from "disqus-react"
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
+const CommentWrapper = styled.div`
+margin: 10vh 0;
+padding: 20px;
+background: #F6F6F6;
+`
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        />
-        <article
-          className={`post-content ${post.frontmatter.thumbnail || `no-image`}`}
-        >
-          <header className="post-content-header">
-            <h1 className="post-content-title">{post.frontmatter.title}</h1>
-          </header>
+const BlogPostTemplate = (props) => {
+  const post = props.data.markdownRemark
+  const siteTitle = props.data.site.siteMetadata.title
+  const tags = post.frontmatter.tags
 
-          {post.frontmatter.description && (
-            <p class="post-content-excerpt">{post.frontmatter.description}</p>
-          )}
-
-          {post.frontmatter.thumbnail && (
-            <div className="post-content-image">
-              <Img
-                className="kg-image"
-                fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
-                alt={post.frontmatter.title}
-              />
-            </div>
-          )}
-
-          <div
-            className="post-content-body"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
-
-          <footer className="post-content-footer">
-            {/* There are two options for how we display the byline/author-info.
-        If the post has more than one author, we load a specific template
-        from includes/byline-multiple.hbs, otherwise, we just use the
-        default byline. */}
-          </footer>
-        </article>
-      </Layout>
-    )
+  const disqusConfig = {
+    shortname: 'gatsby-zoeaeen13',
+    config: { identifier: props.uri, title: post.frontmatter.title},
   }
+
+  return (
+    <Layout location={props.location} title={siteTitle}>
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+      />
+      <article
+        className={`post-content ${post.frontmatter.thumbnail || `no-image`}`}
+      >
+        <header className="post-content-header">
+          <h1 className="post-content-title">{post.frontmatter.title}</h1>
+          <div>
+            <h5 className="post-content-date">{post.frontmatter.date}</h5>
+            <Link to={`/category/${post.frontmatter.category}`} className="post-content-category">{post.frontmatter.category}</Link>
+          </div>
+        </header>
+        {/* {post.frontmatter.thumbnail && (
+          <div className="post-content-image">
+            <Img
+              className="kg-image"
+              fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
+              alt={post.frontmatter.title}
+            />
+          </div>
+        )} */}
+        <div
+          className="post-content-body"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
+        {tags.map(tag => <Tag to={`/tag/${tag}`} >{tag}</Tag>)}
+        <footer className="post-content-footer">
+          <CommentWrapper>
+            <DiscussionEmbed {...disqusConfig} />
+          </CommentWrapper>
+        </footer>
+      </article>
+    </Layout>
+  )
+
 }
 
 export default BlogPostTemplate
@@ -70,8 +82,10 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
         description
+        tags
+        category
         thumbnail {
           childImageSharp {
             fluid(maxWidth: 1360) {

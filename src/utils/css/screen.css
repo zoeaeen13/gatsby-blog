@@ -25,7 +25,7 @@ production stylesheet in assets/built/screen.css using gulp dev
 /* ---------------------------------------------------------- */
 
 body {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     background: var(--color-bg);
     transition: background 0.3s ease-out;
     transition-delay: 0.25;
@@ -51,12 +51,12 @@ body {
 /* ---------------------------------------------------------- */
 
 .site-wrapper {
-    padding: 3vw;
+    padding: 20px;
     min-height: 100vh;
 }
 @media (max-width: 850px) {
     .site-wrapper {
-        padding: 6vw;
+        padding: 5vw;
     }
 }
 
@@ -137,19 +137,20 @@ body {
 .site-head {
     position: relative;
     z-index: 300;
-    margin-top: -10px;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
+    
 }
 
 .site-head-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 10vw;
 }
 
 .site-head-left {
     position: relative;
-        z-index: 100;
+    z-index: 100;
     display: flex;
     align-items: center;
     margin-right: 10px;
@@ -186,10 +187,10 @@ body {
 }
 
 .site-head-center {
-    position: absolute;
+    /* position: absolute;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100%; */
 }
 
 .site-head-logo {
@@ -199,7 +200,7 @@ body {
     color: var(--color-base);
     font-size: 2.1rem;
     line-height: 1em;
-    font-weight: 700;
+    font-weight: 1000;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -258,7 +259,6 @@ body {
     height: 2.1rem;
     fill: var(--color-base);
 }
-
 
 /* Mobile Nav Menu
 /* ---------------------------------------------------------- */
@@ -382,17 +382,27 @@ body {
         transition: transform 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
         transform: translateY(-4vw);
     }
-
 }
 
+
+/* 404
+/* ---------------------------------------------------------- */
+
+.page-404-wrapper {
+    display: flex;
+    justify-content: center;
+}
 
 /* Post Feed
 /* ---------------------------------------------------------- */
 
 .post-feed {
     display: flex;
-    align-items: ;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    width: 56%;
+    margin: 8vh auto 20px auto;
 }
 
 .post-card {
@@ -515,13 +525,39 @@ body {
 .post-content-header {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+}
+
+.post-content-header > div {
+    padding: 20px 0;
+    display: flex;
     align-items: center;
 }
 
+.post-content-title, .post-content-date, .post-content-category {
+    margin: 0;
+    padding: 0
+}
+
 .post-content-title {
-    margin: 0 0 3vw;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 500;
     color: var(--color-base);
-    text-align: center;
+}
+
+.post-content-date, .post-content-category {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: .05px;
+    font-weight: normal;
+    color: #687385;
+}
+
+.post-content-category {
+    font-weight: 500;
+    margin-left: 10px;
 }
 
 .post-content-excerpt {
@@ -539,9 +575,9 @@ body {
 }
 
 .post-content-image {
-    margin: 4vw 0;
+    margin: 20px 0;
     position: relative;
-    width: 75vw;
+    width: 100%;
     min-width: 100%;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
@@ -549,17 +585,16 @@ body {
 }
 
 .post-content-body {
-    font-size: 1.9rem;
-    line-height: 1.65em;
-}
-@media (max-width: 500px) {
-    .post-content-body {
-        font-size: 1.7rem;
-    }
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: .48px;
 }
 
 .post-content-body h1,
-.post-content-body h2,
+.post-content-body h2 {
+    margin: 0;
+}
 .post-content-body h3,
 .post-content-body h4,
 .post-content-body h5,
@@ -581,8 +616,8 @@ body {
 
 .post-content-body blockquote {
     margin: 0 0 1.5em;
-    padding: 0 1.5em;
-    border-left: #3eb0ef 3px solid;
+    padding: .5em 1.5em;
+    border-left: #181818 4px solid;
 }
 
 .post-content-body blockquote p {
@@ -598,11 +633,13 @@ body {
 }
 
 .post-content-body code {
-    padding: 0 5px 2px;
-    font-size: 0.8em;
+    margin: 3px;
+    padding: 2px 5px;
+    font-size: 0.9em;
     line-height: 1em;
     font-weight: 400!important;
-    background: var(--color-bg);
+    background: #F7F7F9;
+    color: #DF505D;
     border-radius: 3px;
 }
 
@@ -639,21 +676,24 @@ body {
 }
 
 .post-content-body hr {
-    margin: 4vw 0;
+    position: relative;
+    margin: 25px 0;
+    border-color: transparent;
 }
 
 .post-content-body hr:after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 50%;
     display: block;
-    margin-left: -10px;
-    width: 1px;
-    height: 30px;
-    background: color(var(--color-border) l(+10%));
-    box-shadow: #fff 0 0 0 5px;
-    transform: rotate(45deg);
+    font-size: 20px;
+    content: ". . .";
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-content-footer {
+    margin: 2em 0;
 }
 
 .footnotes-sep {
