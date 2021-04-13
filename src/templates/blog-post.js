@@ -2,6 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { graphql } from "gatsby"
+import { kebabCase } from 'lodash'
 import 'gatsby-remark-vscode/styles.css';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -29,7 +30,7 @@ const BlogPostTemplate = (props) => {
     <Layout location={props.location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        description={post.excerpt}
       />
       <article
         className={`post-content ${post.frontmatter.thumbnail || `no-image`}`}
@@ -38,7 +39,7 @@ const BlogPostTemplate = (props) => {
           <h1 className="post-content-title">{post.frontmatter.title}</h1>
           <div>
             <h5 className="post-content-date">{post.frontmatter.date}</h5>
-            <Link to={`/category/${post.frontmatter.category}`} className="post-content-category">{post.frontmatter.category}</Link>
+            <Link to={`/category/${kebabCase(post.frontmatter.category)}`} className="post-content-category">{post.frontmatter.category}</Link>
           </div>
         </header>
         {/* {post.frontmatter.thumbnail && (
@@ -54,7 +55,7 @@ const BlogPostTemplate = (props) => {
           className="post-content-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
-        {tags.map(tag => <Tag to={`/tag/${tag}`} >{tag}</Tag>)}
+        {tags.map(tag => <Tag to={`/tags/${kebabCase(tag)}`} >{tag}</Tag>)}
         <footer className="post-content-footer">
           <CommentWrapper>
             <DiscussionEmbed {...disqusConfig} />
@@ -78,12 +79,11 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt
       html
       frontmatter {
         title
         date(formatString: "MMM DD, YYYY")
-        description
         tags
         category
         thumbnail {

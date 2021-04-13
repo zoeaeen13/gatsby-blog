@@ -1,22 +1,34 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import Bio from '../components/bio'
+import { find, orderBy } from 'lodash'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import PostType from "../components/postType"
-import Button from '../components/LinkButton'
 // import "../utils/global.scss"
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
-
-
 const BlogIndex = ({ data }) => {
-  console.log('data_____index', data)
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog')
-  const diarys = posts.filter(node => node.node.frontmatter.type === 'diary')
+  let archiveList = []
+  posts.forEach((post) => {
+    const year = post.node.frontmatter.date.split(', ')[1]
+    if (!find(archiveList, {year})) {
+      archiveList.push({year, list: [post]})
+    } else {
+      archiveList.forEach(archive => {
+        if (archive.year !== year) return
+        archive.list.push(post)
+      })
+    }
+  })
+
+  archiveList.forEach(archive => {
+    console.log('archive', archive)
+  })
+  // orderBy(archiveList, ['year', 'age'], ['asc', 'desc'])
+
+  console.log('archiveList', archiveList)
 
   return (
     <Layout title={siteTitle}>
@@ -24,11 +36,6 @@ const BlogIndex = ({ data }) => {
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
-      <Bio />
-      <div className="post-feed">
-        <PostType type={'Featured Posts'} posts={blogs}/>
-        <Button>All Posts →</Button>
-      </div>
     </Layout>
   )
 }
@@ -48,7 +55,7 @@ const indexQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "DD MMM, YYYY")
+            date(formatString: "MMM DD, YYYY")
             title
             type
             tags

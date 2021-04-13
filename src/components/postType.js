@@ -1,10 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from 'styled-components'
 import PostCard from './postCard'
 
 const Wrapper = styled.div`
-
 `
 
 const PostTypeTitle = styled.div`
@@ -32,20 +30,20 @@ const PostTypeTitle = styled.div`
 const PostType = ({type, posts}) => {
   return (
     <Wrapper>
-    <PostTypeTitle>
-      <h5>{type}</h5><div></div>
-    </PostTypeTitle>
-    {posts && (
-      posts.map((post, index) => {
-        return (
-          <PostCard
-            key={index}
-            node={post.node}
-          />
-        )
-      })
-    )
-    }
+      <PostTypeTitle>
+        <h5>{type}</h5><div></div>
+      </PostTypeTitle>
+      {posts && (
+        posts.map((post, index) => {
+          return (
+            <PostCard
+              key={index}
+              node={post.node}
+            />
+          )
+        })
+      )
+      }
     </Wrapper>
   )
 }

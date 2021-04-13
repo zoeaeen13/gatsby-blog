@@ -33,9 +33,9 @@ const ImageWrapper = styled.div`
   height: 0;
   padding-bottom: 60%;
   overflow: hidden;
-  background-size: cover;
+  background-size: auto;
   ${props => `
-    background: url(${props.url});
+    background: url(${props.url}) no-repeat;
   `}
   
   @media (max-width: 850px) {
@@ -72,7 +72,7 @@ function Bio() {
         return (
           <BioSection>
             <div>
-              <ImageWrapper url="https://images.unsplash.com/photo-1618072691851-5319b71f2dc3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=716&q=80"/>              <Content>
+              <ImageWrapper url='https://images.unsplash.com/photo-1618072691851-5319b71f2dc3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=716&q=80'/><Content>
                 <p>I’m <span>Ubud</span>, a Front-End and Ghost CMS theme developer based in Cairo, Egypt. I left my full-time job at Trustious in 2016. Then I created Aspire Themes to provide simple, well-designed, and functional Ghost CMS themes.</p>
                 <p>Founded the Arabic blogging platform oktob.io in 2015 which was acquired by Toriom in 2017.</p>
                 <p>My goal is to work on something meaningful. I craft themes that offer value and joy to the communities and individuals who use them.</p>
