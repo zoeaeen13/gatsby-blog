@@ -1,9 +1,9 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { forEach } from 'lodash'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ArchiveItem from '../components/ArchiveItem'
+import ArchiveSection from '../components/archiveSection'
+import { getArchiveList } from '../utils/utills'
 // import "../utils/global.scss"
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
@@ -11,29 +11,23 @@ import "../utils/css/screen.css"
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const nodes = data.allMarkdownRemark.edges
-  const yearList = new Set()
-  nodes.forEach((post) => {
-    const year = post.node.frontmatter.date.split(', ')[1]
-    yearList.add(year)
-  })
-  
-  const archiveList = []
-  yearList.forEach((year) => {
-    const posts = nodes.filter(post => post.node.frontmatter.date.split(', ')[1] === year)
-    archiveList.push({ year, posts })
-  })
-
-  console.log('archiveList_____', archiveList)
+  const archiveList = getArchiveList(nodes)
+  console.log('archive_______', archiveList)
 
   return (
     <Layout title={siteTitle}>
       <SEO
-        title="All posts"
+        title="Archive"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
-      {archiveList.map(archive => {
-        return <ArchiveItem year={archive.year} list={archive.posts}/>
-      })}
+      <header className="archive-page-head">
+        <h1>Archive</h1>
+      </header>
+      <div className="archive-wrapper">
+        {archiveList.map(archive => {
+          return <ArchiveSection year={archive.year} list={archive.posts}/>
+        })}
+      </div>
     </Layout>
   )
 }

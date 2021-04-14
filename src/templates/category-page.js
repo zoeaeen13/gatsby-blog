@@ -2,36 +2,33 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import PostCard from "../components/postCard"
+import CategoryBanner from "../components/categoryBanner"
+import { getArchiveList } from "../utils/utills"
+import ArchiveSection from '../components/archiveSection'
 
 class CategoryPageTemplate extends React.Component {
   render() {
-    const props = this.props
-    // const tag = this.props.pageContext.tag
-    // const posts = this.props.data.allMarkdownRemark.edges
+    const category = this.props.pageContext.category
+    const posts = this.props.data.allMarkdownRemark.edges
     const siteTitle = this.props.data.site.siteMetadata.title
+    const archiveList = getArchiveList(posts)
+    console.log('category___archive______', archiveList)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          // title={`#${tag}`}
-          // title={`#${tag.charAt(0).toUpperCase() + tag.slice(1)}`}
-          // keywords={[`${tag}`, `blog`, `gatsby`, `javascript`, `react`]}
+          title={`${category}`}
+          keywords={[`${category}`, `blog`]}
         />
-        {/* <header className="tag-page-head">
-          <h1>#{tag}({props.data.allMarkdownRemark.totalCount})</h1>
+        <header className="category-page-head">
+          <h1>{category}</h1>
+          <CategoryBanner category={category}/>
         </header>
-        <div className="post-feed">
-          {posts.map(({ node }) => {
-            return (
-              <PostCard
-                key={node.fields.slug}
-                node={node}
-                postClass={`post`}
-              />
-            )
+        <div className="archive-wrapper">
+          {archiveList.map(archive => {
+            return <ArchiveSection type="card" year={archive.year} list={archive.posts}/>
           })}
-        </div> */}
+        </div>
       </Layout>
     )
   }

@@ -3,7 +3,7 @@ title: 【譯】練習的深度：Depth
 type: blog
 category: Yoga
 tags: [Ashtanga]
-date: "2020-01-18"
+date: "2019-01-18"
 thumbnail: ./cover.jpeg
 ---
 

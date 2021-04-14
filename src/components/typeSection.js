@@ -25,9 +25,7 @@ const PostTypeTitle = styled.div`
   }
 `
 
-
-
-const PostType = ({type, posts}) => {
+const TypeSection = ({type, posts}) => {
   return (
     <Wrapper>
       <PostTypeTitle>
@@ -48,4 +46,4 @@ const PostType = ({type, posts}) => {
   )
 }
 
-export default PostType
+export default TypeSection

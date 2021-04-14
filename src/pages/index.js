@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 import Bio from '../components/bio'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import PostType from "../components/postType"
+import TypeSection from "../components/typeSection"
 import Button from '../components/LinkButton'
 // import "../utils/global.scss"
 import "../utils/normalize.css"
@@ -25,8 +25,8 @@ const BlogIndex = ({ data }) => {
       />
       <Bio />
       <div className="post-feed">
-        <PostType type={'Featured Posts'} posts={blogs}/>
-        <Button>All Posts →</Button>
+        <TypeSection type={'Featured Posts'} posts={blogs}/>
+        <Button to="/archive">All Posts →</Button>
       </div>
     </Layout>
   )

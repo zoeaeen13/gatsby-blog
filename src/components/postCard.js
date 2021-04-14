@@ -8,7 +8,6 @@ const PostCard = styled.article`
   justify-content: space-between;
   width: 100%;
   padding: 30px 0;
-  // border-bottom: 2px solid #f6f6f6;
 
   @media (max-width: 800px) {
     flex-direction: column;
@@ -37,10 +36,12 @@ const Category = styled.div`
   flex-direction: column;
   width: 20%;
   padding-right: 10px;
+  margin-bottom: 10px;
 
   @media (max-width: 800px) {
     width: 100%;
-    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
   }
 
   
@@ -54,7 +55,11 @@ const Category = styled.div`
     white-space: nowrap;
 
     @media (max-width: 800px) {
-      display: none;
+      margin: 0;
+      margin-right: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #919aa9;
     }
   }
 
@@ -103,7 +108,7 @@ const Content = styled.div`
   }
 `
 
-const postCard =  ({ node }) => {
+const postCard =  ({ type, node }) => {
   return (
   <PostCard>
     <Category>
