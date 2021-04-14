@@ -1,34 +1,29 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { find, orderBy } from 'lodash'
+import { forEach } from 'lodash'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ArchiveItem from '../components/ArchiveItem'
 // import "../utils/global.scss"
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
-  let archiveList = []
-  posts.forEach((post) => {
+  const nodes = data.allMarkdownRemark.edges
+  const yearList = new Set()
+  nodes.forEach((post) => {
     const year = post.node.frontmatter.date.split(', ')[1]
-    if (!find(archiveList, {year})) {
-      archiveList.push({year, list: [post]})
-    } else {
-      archiveList.forEach(archive => {
-        if (archive.year !== year) return
-        archive.list.push(post)
-      })
-    }
+    yearList.add(year)
+  })
+  
+  const archiveList = []
+  yearList.forEach((year) => {
+    const posts = nodes.filter(post => post.node.frontmatter.date.split(', ')[1] === year)
+    archiveList.push({ year, posts })
   })
 
-  archiveList.forEach(archive => {
-    console.log('archive', archive)
-  })
-  // orderBy(archiveList, ['year', 'age'], ['asc', 'desc'])
-
-  console.log('archiveList', archiveList)
+  console.log('archiveList_____', archiveList)
 
   return (
     <Layout title={siteTitle}>
@@ -36,6 +31,9 @@ const BlogIndex = ({ data }) => {
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
+      {archiveList.map(archive => {
+        return <ArchiveItem year={archive.year} list={archive.posts}/>
+      })}
     </Layout>
   )
 }

@@ -12,7 +12,6 @@ import "../utils/css/screen.css"
 
 
 const BlogIndex = ({ data }) => {
-  console.log('data_____index', data)
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
   const blogs = posts.filter(node => node.node.frontmatter.type === 'blog')
