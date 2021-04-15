@@ -12,11 +12,36 @@ module.exports = {
     },
   },
   plugins: [
+    // 部落格文章
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
+      },
+    },
+    // 技術文章
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/coding`,
+        name: `coding`,
+      },
+    },
+    // 生活記事
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/life`,
+        name: `life`,
+      },
+    },
+    // side project
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/projects`,
+        name: `projects`,
       },
     },
     {
@@ -112,18 +137,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-          shortname: `gatsby-zoeaeen13`
+        shortname: `gatsby-zoeaeen13`
       }
-  },
-  {
-    resolve: `gatsby-plugin-google-fonts`,
-    options: {
-      fonts: [
-        `Noto Sans TC`,
-        `source sans pro\:300,400,500,700` // you can also specify font weights and styles
-      ],
-      display: 'swap'
+    },
+    // google fonts
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Noto Sans TC`,
+          `source sans pro\:300,400,500,700`
+        ],
+        display: 'swap'
+      }
     }
-  }
   ],
 }

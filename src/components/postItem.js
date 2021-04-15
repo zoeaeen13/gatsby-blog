@@ -24,11 +24,11 @@ const PostDate = styled.p`
   font-weight: 500;
 `
 
-const PostItem = ({ node }) => {
+const PostItem = ({ type, node }) => {
   return (
     <>
       <PostLink to={node.fields.slug}>{node.frontmatter.title}</PostLink>
-      <PostDate>{node.frontmatter.date}</PostDate>
+      {<PostDate>{node.frontmatter.date}</PostDate>}
     </>
   )
 }

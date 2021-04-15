@@ -3,6 +3,7 @@ title: 一期一會
 type: blog
 category: 山裡的日子
 tags: [那些年我們去縱走, 泊]
+mark: true
 date: "2018-08-09"
 thumbnail: ./cover.jpeg
 ---

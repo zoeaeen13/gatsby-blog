@@ -25,6 +25,7 @@ class TagPageTemplate extends React.Component {
           {posts.map(({ node }) => {
             return (
               <PostCard
+                sub={'category'}
                 key={node.fields.slug}
                 node={node}
                 postClass={`post`}
@@ -56,9 +57,10 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMM DD, YYYY")
             title
             tags
+            category
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {

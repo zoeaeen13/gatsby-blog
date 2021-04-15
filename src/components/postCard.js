@@ -37,6 +37,7 @@ const Category = styled.div`
   width: 20%;
   padding-right: 10px;
   margin-bottom: 10px;
+  margin-right: 10px;
 
   @media (max-width: 800px) {
     width: 100%;
@@ -107,13 +108,29 @@ const Content = styled.div`
     padding-right: 0px;
   }
 `
+const TagWrap = styled.div`
+  a {
+    display: block;
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+`
 
-const postCard =  ({ type, node }) => {
+
+const postCard =  ({ sub, node }) => {
+  const tags = node.frontmatter.tags
+
   return (
   <PostCard>
     <Category>
       <h4>{node.frontmatter.date}</h4>
-      <Link to={`/category/${kebabCase(node.frontmatter.category)}`}>{node.frontmatter.category}</Link>
+      {sub === 'category' ?
+        (<Link to={`/category/${kebabCase(node.frontmatter.category)}`}>{node.frontmatter.category}</Link>) :
+        (<TagWrap>
+          {tags.map(tag => <Link to={`/tags/${kebabCase(tag)}`}>{`#${tag}`}</Link>)}
+        </TagWrap>)
+      }
     </Category>
     <Content>
       <Link to={node.fields.slug}>{node.frontmatter.title || node.fields.slug}</Link>

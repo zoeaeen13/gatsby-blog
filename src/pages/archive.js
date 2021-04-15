@@ -11,7 +11,7 @@ import "../utils/css/screen.css"
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const nodes = data.allMarkdownRemark.edges
-  const archiveList = getArchiveList(nodes)
+  const archiveList = getArchiveList(nodes.filter(node => node.node.frontmatter.type !== 'life'))
   console.log('archive_______', archiveList)
 
   return (

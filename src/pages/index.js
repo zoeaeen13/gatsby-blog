@@ -9,13 +9,11 @@ import Button from '../components/LinkButton'
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
-
-
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog')
-  const diarys = posts.filter(node => node.node.frontmatter.type === 'diary')
+  const featuredPosts = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark === true)
+  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark !== true)
 
   return (
     <Layout title={siteTitle}>
@@ -25,7 +23,8 @@ const BlogIndex = ({ data }) => {
       />
       <Bio />
       <div className="post-feed">
-        <TypeSection type={'Featured Posts'} posts={blogs}/>
+        <TypeSection type={'Featured Posts'} posts={featuredPosts}/>
+        <TypeSection type={'Recent Posts'} posts={blogs}/>
         <Button to="/archive">All Posts →</Button>
       </div>
     </Layout>
@@ -47,11 +46,12 @@ const indexQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "DD MMM, YYYY")
+            date(formatString: "MMM DD, YYYY")
             title
             type
-            tags
             category
+            tags
+            mark
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {
