@@ -1,19 +1,15 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { HomeBio } from '../components/bio'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import TypeSection from "../components/typeSection"
-import Button from '../components/LinkButton'
-// import "../utils/global.scss"
+import { PostCard } from '../components/postType'
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
 const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const featuredPosts = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark === true)
-  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark !== true)
+  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog')
 
   return (
     <Layout title={siteTitle}>
@@ -21,11 +17,21 @@ const BlogIndex = ({ data }) => {
         title="All posts"
         keywords={[`zoeaeen13`, `blog`, `gatsby`, `react`]}
       />
-      <HomeBio />
       <div className="post-feed">
-        <TypeSection type={'Featured Posts'} posts={featuredPosts}/>
-        <TypeSection type={'Recent Posts'} posts={blogs}/>
-        <Button to="/blog">All Posts →</Button>
+        <header className="all-blog-head">
+          <h1>Blog</h1>
+        </header>
+        {blogs && (
+          blogs.map((post, index) => {
+            return (
+              <PostCard
+                sub={'category'}
+                key={index}
+                node={post.node}
+              />
+            )
+          })
+        )}
       </div>
     </Layout>
   )

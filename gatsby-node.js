@@ -1,5 +1,4 @@
 const path = require(`path`)
-const _ = require("lodash");
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = ({ graphql, actions }) => {
@@ -24,6 +23,10 @@ exports.createPages = ({ graphql, actions }) => {
                 title
                 tags
                 category
+                mark
+                description
+                mark
+                location
               }
             }
           }

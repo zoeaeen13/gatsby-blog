@@ -9,6 +9,10 @@ module.exports = {
     siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
     social: {
       twitter: siteConfig.twitter,
+      github: siteConfig.github,
+      instagram: siteConfig.instagram,
+      facebook: siteConfig.facebook,
+      mail: siteConfig.mail
     },
   },
   plugins: [
@@ -108,6 +112,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-feed`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -1,31 +1,37 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { HomeBio } from '../components/bio'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import TypeSection from "../components/typeSection"
-import Button from '../components/LinkButton'
-// import "../utils/global.scss"
+import { CodingBio } from '../components/bio'
+import { PostIntro } from '../components/postType'
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
-const BlogIndex = ({ data }) => {
+const CodingBlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const featuredPosts = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark === true)
-  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark !== true)
+  const codingPosts = posts.filter(node => node.node.frontmatter.type === 'coding')
 
   return (
     <Layout title={siteTitle}>
       <SEO
         title="All posts"
-        keywords={[`zoeaeen13`, `blog`, `gatsby`, `react`]}
+        keywords={[`zoeaeen13`, `lidemy`, `javascript`, `react`]}
       />
-      <HomeBio />
-      <div className="post-feed">
-        <TypeSection type={'Featured Posts'} posts={featuredPosts}/>
-        <TypeSection type={'Recent Posts'} posts={blogs}/>
-        <Button to="/blog">All Posts →</Button>
+      <div className="coding-post-feed">
+        <CodingBio />
+        {codingPosts && (
+          codingPosts.map((post, index) => {
+            return (
+              <PostIntro
+                sub={'category'}
+                key={index}
+                node={post.node}
+              />
+            )
+          })
+        )
+        }
       </div>
     </Layout>
   )
@@ -51,7 +57,7 @@ const indexQuery = graphql`
             type
             category
             tags
-            mark
+            description
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {
@@ -70,7 +76,7 @@ export default props => (
   <StaticQuery
     query={indexQuery}
     render={data => (
-      <BlogIndex props data={data} {...props} />
+      <CodingBlogIndex props data={data} {...props} />
     )}
   />
 )

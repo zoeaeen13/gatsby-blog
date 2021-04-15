@@ -7,7 +7,6 @@ import 'gatsby-remark-vscode/styles.css';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Tag from "../components/tag"
-import Intro from "../components/intro"
 import { DiscussionEmbed } from "disqus-react"
 
 const CommentWrapper = styled.div`
@@ -55,8 +54,8 @@ const BlogPostTemplate = (props) => {
           className="post-content-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
-        {tags.map(tag => <Tag to={`/tags/${kebabCase(tag)}`} >{tag}</Tag>)}
         <footer className="post-content-footer">
+          {tags.map((tag, index) => <Tag key={index} to={`/tags/${kebabCase(tag)}`} >{tag}</Tag>)}
           <CommentWrapper>
             <DiscussionEmbed {...disqusConfig} />
           </CommentWrapper>

@@ -1,7 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import PostItem from '../components/postItem'
-import PostCard from '../components/postCard'
+import { PostCard, PostTitle } from '../components/postType'
 
 const ItemWrapper = styled.div`
 border-bottom: 1px solid #eeeeee;
@@ -12,15 +11,15 @@ const ArchiveTitle = styled.h4`
   padding: 0;
   padding-bottom: 24px;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
 `
 
-const ArchiveSection =  ({ type, year, list }) => {
+const ArchiveSection =  ({ type, year, posts }) => {
   return (
     <ItemWrapper>
       <ArchiveTitle>{year}</ArchiveTitle>
-      {list.map((post, index) => {
-        return type === 'card'?  <PostCard key={index} node={post.node} /> : <PostItem key={index} node={post.node}/>
+      {posts.map((post, index) => {
+        return type === 'card'?  <PostCard type={post.node.frontmatter.type} key={index} node={post.node} /> : <PostTitle key={index} node={post.node}/>
       })}
     </ItemWrapper>
 )}

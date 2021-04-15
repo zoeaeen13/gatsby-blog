@@ -12,7 +12,6 @@ class CategoryPageTemplate extends React.Component {
     const posts = this.props.data.allMarkdownRemark.edges
     const siteTitle = this.props.data.site.siteMetadata.title
     const archiveList = getArchiveList(posts)
-    console.log('category___archive______', archiveList)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -25,8 +24,8 @@ class CategoryPageTemplate extends React.Component {
           <CategoryBanner category={category}/>
         </header>
         <div className="archive-wrapper">
-          {archiveList.map(archive => {
-            return <ArchiveSection type="card" year={archive.year} list={archive.posts}/>
+          {archiveList.map((archive, index) => {
+            return <ArchiveSection key={index} type="card" year={archive.year} posts={archive.posts}/>
           })}
         </div>
       </Layout>
@@ -57,6 +56,7 @@ export const pageQuery = graphql`
             title
             tags
             category
+            type
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {

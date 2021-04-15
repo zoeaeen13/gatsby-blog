@@ -1,7 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import PostCard from './postCard'
-
+import { PostCard } from './postType'
 const Wrapper = styled.div`
 margin-bottom: 20px;
 `
@@ -42,8 +41,7 @@ const TypeSection = ({type, posts}) => {
             />
           )
         })
-      )
-      }
+      )}
     </Wrapper>
   )
 }

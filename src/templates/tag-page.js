@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import PostCard from "../components/postCard"
+import { PostCard } from "../components/postType"
 
 class TagPageTemplate extends React.Component {
   render() {
@@ -27,6 +27,7 @@ class TagPageTemplate extends React.Component {
               <PostCard
                 sub={'category'}
                 key={node.fields.slug}
+                type={node.frontmatter.type}
                 node={node}
                 postClass={`post`}
               />
@@ -61,6 +62,7 @@ export const pageQuery = graphql`
             title
             tags
             category
+            type
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {

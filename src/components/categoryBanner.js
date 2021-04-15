@@ -2,6 +2,8 @@ import React from "react"
 import styled from 'styled-components'
 import yogaImg from '../images/category/yoga.jpeg'
 import mountainImg from '../images/category/mountain.jpeg'
+import kotlinImg from '../images/category/kotlin.jpeg'
+
 
 const ImageContainer = styled.div`
   background-position: center;
@@ -24,6 +26,9 @@ const CategoryBanner = ({ category }) => {
       break;
     case '山裡的日子':
       url = mountainImg
+      break;
+    case 'Android':
+      url = kotlinImg
       break;
     default:
       break;

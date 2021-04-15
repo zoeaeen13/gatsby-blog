@@ -1,31 +1,36 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { HomeBio } from '../components/bio'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import TypeSection from "../components/typeSection"
-import Button from '../components/LinkButton'
-// import "../utils/global.scss"
+import { PostGallery } from '../components/postType'
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
-const BlogIndex = ({ data }) => {
+const LifeBlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
-  const featuredPosts = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark === true)
-  const blogs = posts.filter(node => node.node.frontmatter.type === 'blog' && node.node.frontmatter.mark !== true)
+  const lifePosts = posts.filter(node => node.node.frontmatter.type === 'life')
 
   return (
     <Layout title={siteTitle}>
       <SEO
         title="All posts"
-        keywords={[`zoeaeen13`, `blog`, `gatsby`, `react`]}
+        keywords={[`zoeaeen13`, `life`]}
       />
-      <HomeBio />
-      <div className="post-feed">
-        <TypeSection type={'Featured Posts'} posts={featuredPosts}/>
-        <TypeSection type={'Recent Posts'} posts={blogs}/>
-        <Button to="/blog">All Posts →</Button>
+      <div className="life-post-feed">
+        {/* <LifeBio /> */}
+        <div className="life-post-wrap">
+          {lifePosts && (
+            lifePosts.map((post, index) => {
+              return (
+                <PostGallery
+                  key={index}
+                  node={post.node}
+                />
+              )
+            })
+          )}
+        </div>
       </div>
     </Layout>
   )
@@ -41,7 +46,7 @@ const indexQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
+          excerpt(pruneLength: 160)
           fields {
             slug
           }
@@ -51,7 +56,6 @@ const indexQuery = graphql`
             type
             category
             tags
-            mark
             thumbnail {
               childImageSharp {
                 fluid(maxWidth: 1360) {
@@ -70,7 +74,7 @@ export default props => (
   <StaticQuery
     query={indexQuery}
     render={data => (
-      <BlogIndex props data={data} {...props} />
+      <LifeBlogIndex props data={data} {...props} />
     )}
   />
 )

@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components'
 import { kebabCase } from 'lodash'
-const PostCard = styled.article`
+const PostArticle = styled.article`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -83,7 +83,7 @@ const Category = styled.div`
 `
 
 const Content = styled.div`
-  width: 50%;
+  width: ${props => props.type === 'coding' ? '70%': '50%'};
   padding-right: 10px;
 
   a {
@@ -99,7 +99,7 @@ const Content = styled.div`
     overflow:hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp:3 ;
+    -webkit-line-clamp: ${props => props.type === 'coding' ? '2': '3'};
     -webkit-box-orient: vertical;
   }
 
@@ -118,27 +118,26 @@ const TagWrap = styled.div`
 `
 
 
-const postCard =  ({ sub, node }) => {
+const PostCard =  ({ sub, type, node }) => {
   const tags = node.frontmatter.tags
-
   return (
-  <PostCard>
+  <PostArticle>
     <Category>
       <h4>{node.frontmatter.date}</h4>
       {sub === 'category' ?
         (<Link to={`/category/${kebabCase(node.frontmatter.category)}`}>{node.frontmatter.category}</Link>) :
         (<TagWrap>
-          {tags.map(tag => <Link to={`/tags/${kebabCase(tag)}`}>{`#${tag}`}</Link>)}
+          {tags.map((tag, index) => <Link key={index} to={`/tags/${kebabCase(tag)}`}>{`#${tag}`}</Link>)}
         </TagWrap>)
       }
     </Category>
-    <Content>
+    <Content type={type}>
       <Link to={node.fields.slug}>{node.frontmatter.title || node.fields.slug}</Link>
       <p>{node.excerpt}</p>
     </Content>
     {node.frontmatter.thumbnail && <PostCover to={node.fields.slug} url={node.frontmatter.thumbnail.childImageSharp.fluid.src} />}
-  </PostCard>
+  </PostArticle>
 )}
 
 
-export default postCard
+export default PostCard

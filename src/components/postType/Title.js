@@ -6,7 +6,7 @@ const PostLink = styled(Link)`
   font-size: 16px;
   line-height: 23px;
   letter-spacing: .48px;
-  font-weight: 500;
+  font-weight: 400;
   font-stretch: 100%;
   color: #666666;
   text-decoration: none;
@@ -24,7 +24,7 @@ const PostDate = styled.p`
   font-weight: 500;
 `
 
-const PostItem = ({ type, node }) => {
+const PostTitle = ({ type, node }) => {
   return (
     <>
       <PostLink to={node.fields.slug}>{node.frontmatter.title}</PostLink>
@@ -33,4 +33,4 @@ const PostItem = ({ type, node }) => {
   )
 }
 
-export default PostItem
+export default PostTitle

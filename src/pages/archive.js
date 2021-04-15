@@ -12,7 +12,6 @@ const BlogIndex = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const nodes = data.allMarkdownRemark.edges
   const archiveList = getArchiveList(nodes.filter(node => node.node.frontmatter.type !== 'life'))
-  console.log('archive_______', archiveList)
 
   return (
     <Layout title={siteTitle}>
@@ -20,12 +19,12 @@ const BlogIndex = ({ data }) => {
         title="Archive"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
-      <header className="archive-page-head">
+      {/* <header className="archive-page-head">
         <h1>Archive</h1>
-      </header>
+      </header> */}
       <div className="archive-wrapper">
-        {archiveList.map(archive => {
-          return <ArchiveSection year={archive.year} list={archive.posts}/>
+        {archiveList.map((archive, index) => {
+          return <ArchiveSection key={index} year={archive.year} posts={archive.posts}/>
         })}
       </div>
     </Layout>
@@ -42,7 +41,6 @@ const indexQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt(pruneLength: 160)
           fields {
             slug
           }
