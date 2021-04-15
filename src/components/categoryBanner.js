@@ -1,15 +1,16 @@
 import React from "react"
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 import yogaImg from '../images/category/yoga.jpeg'
 import mountainImg from '../images/category/mountain.jpeg'
 import kotlinImg from '../images/category/kotlin.jpeg'
+import lidemyImg from '../images/category/lidemy.png'
 
-
-const ImageContainer = styled.div`
+const ImageContainer = styled(Link)`
   background-position: center;
   background-size: cover;
   ${props => `
-    background-image: url(${props.url});
+    background-image: url(${props.img});
   `}
   width: 100%;
   height: 0;
@@ -19,22 +20,27 @@ const ImageContainer = styled.div`
 `
 
 const CategoryBanner = ({ category }) => {
-  let url = ''
+  let img = ''
+  let link = ''
   switch (category) {
     case 'Yoga':
-      url = yogaImg
+      img = yogaImg
       break;
     case '山裡的日子':
-      url = mountainImg
+      img = mountainImg
       break;
     case 'Android':
-      url = kotlinImg
+      img = kotlinImg
+      break;
+    case '程式導師計畫':
+      img = lidemyImg
+      link = 'https://bootcamp.lidemy.com/'
       break;
     default:
       break;
   }
   return (
-    <ImageContainer url={url}/>
+    <ImageContainer to={link} img={img}/>
   )
 }
 

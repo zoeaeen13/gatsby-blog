@@ -4,7 +4,6 @@ type: blog
 category: 山裡的日子
 tags: [那些年我們去縱走, 泊]
 mark: true
-location: '聖稜線'
 date: "2018-08-09"
 thumbnail: ./cover.jpeg
 ---
