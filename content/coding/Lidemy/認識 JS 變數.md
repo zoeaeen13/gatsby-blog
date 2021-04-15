@@ -11,7 +11,7 @@ date: '2020-07-03'
 JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得值或物件的參考。型態主要有兩種，分成 Primitive type（基本型別）和 Object types（物件型別）。
 
 ---
-</br>
+---
 
 #### 一、Primitive type 基本型別
 內建型別（Built-in Types），只是一個值、並不是物件（物件是名稱 + 值的組合），Primitive 具有不可變的特性，分為以下幾種
@@ -25,8 +25,8 @@ JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得
 | String | 字串 | 代表文字資料 |
 | symbol |符號 | 被使用在 ES6 或 ECMAScript 6，還在建造中，沒被全部瀏覽器支援 |
 
-</br>
-</br>
+---
+---
 
 #### Object types
 物件型別，物件與其子型別（subtype），例如：物件、陣列、函式等等，物件可以看作是一個用來裝數值的容器：
@@ -38,8 +38,8 @@ JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得
 
 Array 使用數值化「索引」來儲存值，而非如 Object 是使用屬性來儲存值。Function 函式是指一段程式碼片段，可藉由呼叫其名稱來執行它，可簡化重複進行的工作、包裝特定功能的程式碼。
 
-</br>
-</br>
+---
+---
 
 > #### Primitive type 和 Object type 大不同
 ##### 1. Immutable 特性

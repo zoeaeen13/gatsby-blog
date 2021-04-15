@@ -18,7 +18,7 @@ date: '2020-03-04'
 * **ViewModel**
 接收 View 的請求，並從Model取得資料。ViewModel 不會持有任何的UI實體。
 
-</br>
+---
 
 為什麼要使用 MVVM 架構？
 作為初學，可以簡單理解 MVVM 是進行「**關注點分離**」，讓頁面（View）與該頁面的邏輯處理部分徹底切隔開來，不會全部寫在一起，不再像以前一樣將接受通知、請求資料、UI 更新、整理 response 等全擠在同一 Activity 裡面。
@@ -162,14 +162,14 @@ ViewModel，就是要用來儲存 UI 需要的數據。
 * LiveData.setValue()  在主執行緒同步調用
 * LiveData.postValue() 在背景執行緒同步調用
 
-</br>
+---
 
 寫一個 TestViewModel，繼承 ViewModel
 
-* 宣告一個資料型態為< TestData> 的 `MutableLiveData`</br>
+* 宣告一個資料型態為< TestData> 的 `MutableLiveData`---
 * 函式 requestTestData() 是給頁面 View 請求資料
 裡面實際上就是執行剛剛 Model 連線後的 Callback，為什麼要多繞一層呢？
-一般可直接把 call API 寫在 ViewModel，目前只有一支 API 看上去並不複雜，但如果考量到實際運作會有 N 個 API 要接，我會傾向把所有接 API 的程式碼寫在一起，而不是分散在各個 ViewModel</br>
+一般可直接把 call API 寫在 ViewModel，目前只有一支 API 看上去並不複雜，但如果考量到實際運作會有 N 個 API 要接，我會傾向把所有接 API 的程式碼寫在一起，而不是分散在各個 ViewModel---
 
 ```java
 class TestViewModel: ViewModel() {
@@ -193,11 +193,11 @@ class TestViewModel: ViewModel() {
 }
 ```
 * 函式 setTestData() 是給 Model 呼叫來塞值，使用 `postValue()`
-同上，因為把 call API 拉出去寫，所以另寫一個給 Model 呼叫塞值的函式</br>
+同上，因為把 call API 拉出去寫，所以另寫一個給 Model 呼叫塞值的函式---
 * 最後一個函式可寫可不寫
-如果不把 testData 設成 private 的話，就可以從外面呼叫到 LiveData</br>
+如果不把 testData 設成 private 的話，就可以從外面呼叫到 LiveData---
 
-</br>
+---
 
 所以現在回去看 Model，應該就能理解為什麼這樣寫
 ```java
@@ -211,7 +211,7 @@ override fun onResponse(call: Call<TestData>?, response: Response<TestData>?) {
 }
 ```
 
-</br>
+---
 
 #### View
 
@@ -254,20 +254,20 @@ lateinit var testObserver: Observer<TestData>
 
 LiveData 把 Activity 生命周期合併分成了 Inactive 與Active 兩種狀態（`onStart` 與 `onResume` 為 Active，其他為 inactive）。處於非活躍狀態的話，是不會收到 Livedata 任何事件的變更。
 
-</br>
+---
 
 > 為什麼使用 ViewModel 去保存數據？
 
 在 activity 銷毀重建時，可以用 Activity 的 `onSaveInstanceState()` 機制保存和恢復數據，但缺點明顯，只適合保存少量可以被序列化、反序列化的資料
 
-</br>
+---
 
 >了解為什麼整個生命周期方式很重要？
 
 App 需要頻繁非同步請求資料，比如請求網路調介面，這些都是相當耗時。又 Activity 被銷毀後介面請求才返回，考慮到記憶體洩漏情況，會給我們增添好多複雜工作。
 但現在我們利用 ViewModel 處理資料回傳，可以解決此問題，意思只要繼承我們的 ViewModel 後，可能會出現的 bug，google 都幫我們處理了。
 
-</br>
+---
 
 >LiveData 是怎麼判斷該 Observer 處於 Active 狀態？
 

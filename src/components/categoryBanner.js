@@ -5,6 +5,7 @@ import yogaImg from '../images/category/yoga.jpeg'
 import mountainImg from '../images/category/mountain.jpeg'
 import kotlinImg from '../images/category/kotlin.jpeg'
 import lidemyImg from '../images/category/lidemy.png'
+import travelImg from '../images/category/travel.jpeg'
 
 const ImageContainer = styled(Link)`
   background-position: center;
@@ -35,6 +36,9 @@ const CategoryBanner = ({ category }) => {
     case '程式導師計畫':
       img = lidemyImg
       link = 'https://bootcamp.lidemy.com/'
+      break;
+    case '旅行日記':
+      img = travelImg
       break;
     default:
       break;

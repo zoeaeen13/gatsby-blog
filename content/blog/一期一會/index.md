@@ -95,8 +95,8 @@ thumbnail: ./cover.jpeg
 
 ![](https://i.imgur.com/LtXCFCf.jpg)
 
-</br>
+---
 
 謝謝泊陪我來這裡。
 
-</br>
+---

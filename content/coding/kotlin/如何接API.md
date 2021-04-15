@@ -20,7 +20,7 @@ date: '2019-11-11'
 3. [Retrofit 操作教學](https://medium.com/@givemepass/retrofit-%E6%93%8D%E4%BD%9C%E6%95%99%E5%AD%B8-26c7851ec154)
 4. [Retrofit 網路請求學習筆記](https://www.jianshu.com/p/8203238b4a1d)
 
-</br>
+---
 
 #### 加入第三方資源
 [OkHttp 3](https://square.github.io/okhttp/)、[Retrofit2](https://square.github.io/retrofit/) 最新版本參考
@@ -96,7 +96,7 @@ object API {
     fun showMagic(): Call<MagicList>
 ```
 
-</br>
+---
 
 #### 請求接口 Api Interface
 創立 Http 的請求接口，例如 `@GET` 和 `@POST` 用法，了解 `@Body` 和 `@Query` 參數作用。
@@ -118,7 +118,7 @@ interface Api_Interface {
     fun bomb(@Query( "playerId" ) playerId:Int): Call<BombResponse>
 ```
 
-</br>
+---
 
 ### 2. 定義資料格式
 
@@ -138,7 +138,7 @@ interface Api_Interface {
 在 Android Studio 點選左上角 code>> generate>> Kotlin Data Classes from JSON（或直接鍵盤 alt+K）直接生成格式
 ![](https://i.imgur.com/5MvgY9L.png)
 
-</br>
+---
 
 把請求參數 **Request** 和回傳資料 **Response** 的格式寫好，就是用來填入請求 Call 的資料格式
 
@@ -156,7 +156,7 @@ data class EnterResponse(
 )
 ```
 
-</br>
+---
 
 ### 3. 在 Activtiy.kt 實作接後端資料（異步請求）
 
@@ -171,7 +171,7 @@ enqueue(callback: Callback)
 >不需要自己另開 Thread 來執行請求，Callback 也會在該 Thread 中執行。
 但若需變更 UI 介面就需要用 runOnUiThread 方法由主執行緒處理。
 
-</br>
+---
 
 通常我們需要的資訊會在 Response 的 body() 喔！
 
@@ -190,7 +190,7 @@ API1.apiInterface.gameStatus().enqueue(object: Callback<PlayerResponse>{
 })
 ```
 
-</br>
+---
 
 #### 🔨使用 http 會被 Android Studio 擋下的問題
 
@@ -218,7 +218,7 @@ CLEARTEXT communication to f5234a33.ngrok.io not permitted by network security p
 
 ![](https://i.imgur.com/i2IyuXI.png)
 
-</br>
+---
 
 ---
 
