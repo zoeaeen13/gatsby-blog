@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, StaticQuery } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
+import aboutImg from '../images/about.jpeg'
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
 
@@ -13,10 +13,10 @@ const AboutPage = ({ data }, location) => {
     <Layout title={siteTitle}>
       <SEO title="ABout" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
 
-      <article className="post-content">
+      <article className="post-content" style={{padding: '3vw 0'}}>
         <div className="post-content-body">
-          <h2>About</h2>
-          <h3 id="dynamic-styles">Dynamic styles</h3>
+          <img style={{paddingBottom: '2vw'}} src={aboutImg}/>
+          {/* <h3 id="dynamic-styles">Dynamic styles</h3> */}
           <p>
             London comes with photo-centric main layout best suited to
             photography, graphics portfolios and other image-heavy uses.

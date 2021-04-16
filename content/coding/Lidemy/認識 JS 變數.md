@@ -10,8 +10,6 @@ date: '2020-07-03'
 
 JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得值或物件的參考。型態主要有兩種，分成 Primitive type（基本型別）和 Object types（物件型別）。
 
----
----
 
 #### 一、Primitive type 基本型別
 內建型別（Built-in Types），只是一個值、並不是物件（物件是名稱 + 值的組合），Primitive 具有不可變的特性，分為以下幾種
@@ -25,10 +23,8 @@ JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得
 | String | 字串 | 代表文字資料 |
 | symbol |符號 | 被使用在 ES6 或 ECMAScript 6，還在建造中，沒被全部瀏覽器支援 |
 
----
----
 
-#### Object types
+#### 二、Object types
 物件型別，物件與其子型別（subtype），例如：物件、陣列、函式等等，物件可以看作是一個用來裝數值的容器：
 * Object 物件
 * Array 陣列
@@ -39,11 +35,11 @@ JavaScript 型別的資訊只在值或物件本身，變數只用來作為取得
 Array 使用數值化「索引」來儲存值，而非如 Object 是使用屬性來儲存值。Function 函式是指一段程式碼片段，可藉由呼叫其名稱來執行它，可簡化重複進行的工作、包裝特定功能的程式碼。
 
 ---
----
 
-> #### Primitive type 和 Object type 大不同
+> ##### Primitive type 和 Object type 大不同
 ##### 1. Immutable 特性
 在 Primitive Type 它是會回傳一個新的，而不是改變它自己，在對 String 做操作的時候要特別注意這些型別的內建函式
+
 ```js
 var str = 'hello';
 str.toUpperCase();   
@@ -56,6 +52,7 @@ console.log(arr);    // [1, 2]
 
 ##### 2. 賦值的陷阱
 Primitive Type 存的是值，Object 會先給定一記憶體位置，再去讀取裡面的值
+
 ```js
 var obj = {
     number: 10,
@@ -67,7 +64,9 @@ console.log(obj, obj2);  // 10, 10
 obj2.number = 20
 console.log(obj, obj2)   // 20, 20
 ```
+
 要搞清楚重新賦值 `=`和 `.` 的差別
+
 ```js
 var obj = {
     number: 10,
@@ -84,6 +83,7 @@ console.log(obj, obj2)   // 10, 30
 
 #### 資料型別轉換
 可以使用 `typeof` 來檢測值的資料型別為何
+
 ```js
 typeof 'Hello World!'; // 'string'
 typeof true; // 'boolean'
@@ -114,15 +114,14 @@ null == undefined   // true   ( == 會執行類型轉換)
 ```
 
 #### Q: function 是物件的子型別，但 typeof `function() {}` 是得到 function 而非 object？
-和陣列依舊得到 object 不一樣，在 JavaScript 覺得 function 太特別了，所以另外給它獨有的回傳值。
 
-<BR>
+和陣列依舊得到 object 不一樣，在 JavaScript 覺得 function 太特別了，所以另外給它獨有的回傳值。
 
 #### Q: 怎麼檢測陣列？
 ```js
 Array.isArray(H)  //判斷H是不是Array
 ```
-<BR>
+
 
 #### Q: NaN 表示是無效的數字，但依舊還是 number？
 NaN 在 JavaScript 當中是個有趣的存在，字面上來說它不是個數字，但你若用 typeof 運算子來判斷型態，它又會告訴你這是個 number。
@@ -140,7 +139,7 @@ console.log(isNaN(a))     // true，可以用 isNaN() 方法來檢測
 * undefined → 有宣告這個變數，但沒有定義所以沒有設定值
 * not defined → 無法參照，代表錯誤，沒有這個變數存在
 
-<BR>
+
 
 #### Q: 其他的檢測方式？
 ```js
@@ -148,7 +147,6 @@ object.prototype.toString.call(要檢測的東西)
 ```
 * 檢測網站：https://dorey.github.io/JavaScript-Equality-Table/
 
-<BR>
 
 #### Q: 為什麼永遠都用 === ？
 因為 `==` 會涉及型態轉換，所以最好的方式就是都用 `===`

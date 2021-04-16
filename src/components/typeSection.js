@@ -33,13 +33,17 @@ const TypeSection = ({type, posts}) => {
       </PostTypeTitle>
       {posts && (
         posts.map((post, index) => {
-          return (
-            <PostCard
-              sub={'category'}
-              key={index}
-              node={post.node}
-            />
-          )
+          if (index < 3) {
+            return (
+              <PostCard
+                sub={'category'}
+                key={index}
+                node={post.node}
+              />
+            )
+          } else {
+            return null
+          }
         })
       )}
     </Wrapper>

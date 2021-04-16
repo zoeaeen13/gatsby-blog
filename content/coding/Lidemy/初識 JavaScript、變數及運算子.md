@@ -16,12 +16,14 @@ date: '2020-07-03'
 
 ---
 
-#### Q: 如何執行 JS 程式
+> **Q: 如何執行 JS 程式**
+
 1. 在瀏覽器中執行 JavaScript
-建立一個 .html 檔，撰寫 `script`，並於兩標籤之間撰寫 JavaScript 程式碼、嘗試印出東西，開啟瀏覽器執行，可以從開發者工具 -> Console 看到執行結果。
-* 瀏覽器在碰到 `script` 時，會停止文件解析，先執行 `script` 間的程式碼 ，如果你的 JS 裡面要操作到 DOM 元素，應該將 `script` 標籤放在文件最後執行
-* 瀏覽器會假設你使用的是 JavaScript 語言，不過你也可以用 HTTP Content-Script-Type 標頭來指定，標頭可以使用 `<meta>` 來摸擬，亦或是可以在 `script` 上使用 type 屬性來指定
-* 可以不寫在 .html 裡面，將 JavaScript 程式專門撰寫在 .js 檔案，再使用 `script` 標籤的 src 屬性指定檔案名稱
+建立一個 .html 檔，撰寫 `<script>`，並於兩標籤之間撰寫 JavaScript 程式碼、嘗試印出東西，開啟瀏覽器執行，可以從開發者工具 -> Console 看到執行結果。
+* 瀏覽器在碰到 `<script>` 時，會停止文件解析，先執行 `<script>` 間的程式碼 ，如果你的 JS 裡面要操作到 DOM 元素，應該將 `<script>` 標籤放在文件最後執行
+* 瀏覽器會假設你使用的是 JavaScript 語言，不過你也可以用 HTTP Content-Script-Type 標頭來指定，標頭可以使用 `<meta>` 來摸擬，亦或是可以在 `<script>` 上使用 type 屬性來指定
+* 可以不寫在 .html 裡面，將 JavaScript 程式專門撰寫在 .js 檔案，再使用 `<script>` 標籤的 src 屬性指定檔案名稱
+
 ```html
 // 方法一： HTTP Content
 <meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -42,7 +44,7 @@ date: '2020-07-03'
 
 #### Q: 如何比較好理解 Runtime？
 
-直譯就是運行時間，run（跑、運行）time（時間）是一套比較底層的純 C 語言。在 stackoverflow 上有相關的討論「[What is “runtime”?](https://stackoverflow.com/questions/3900549/what-is-runtime)」其中一段我認為比較好的解釋：
+直譯就是運行時間，run（跑、運行）time（時間）是一套比較底層的純 C 語言。在 stackoverflow 上有相關的討論「[What is "runtuime"?](https://stackoverflow.com/questions/3900549/what-is-runtime)」其中一段我認為比較好的解釋：
 
 >*Runtime describes software/instructions that are executed while your program is running, especially those instructions that you did not write explicitly, but are necessary for the proper execution of your code.
 >
@@ -53,21 +55,21 @@ date: '2020-07-03'
 
 ---
 
-### 變數（Variable）
+#### 變數（Variable）
 * 資料(值)的存放角色。和常數不同，想像變數是一個**暫時存放值**的盒子，而盒子是打開的，可以更動或抽換裡面的東西
 * 記住：**宣告變數**和**定義變數**是分開的
-    - 宣告變數：`var foo`、`let foo`、`const foo`，ES6 之後有三種 [宣告方式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Grammar_and_types)，之前只有定義變數沒有定義常數的方式
+    - 宣告變數：`var foo`、`let foo`、`const foo`，ES6 之後有三種[宣告方式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Grammar_and_types)，之前只有定義變數沒有定義常數的方式
     - 定義變數：`foo = 1`、`foo = '1'`、`foo = true`
     - 定義變數稱為**賦值**，宣告變數時如果沒有賦值的話，預設是 undefined
 
-<br>
 
-#### 變數的命名規則
+##### 變數的命名規則
 * 數字不可用於開頭字元
 * 不可使用 JavaScript [保留字](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Future_reserved_keywords)，如 var、return 等
-* 又被稱為 identifier，取的名稱要有**識別性**，最好讓人一眼判斷這個變數代表什麼值、這個函式要做什麼事
+* 又稱為 identifier，取名稱要有**識別性**，最好讓人一眼判斷這個變數代表什麼、要做什麼事
 
-命名有很大的學問，可以幫助 code review 和讓其他人理解程式碼，參考 [好的變數(函式、類別)命名](https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part3/var_const_naming.html#%E5%A5%BD%E7%9A%84%E8%AE%8A%E6%95%B8%E5%87%BD%E5%BC%8F%E3%80%81%E9%A1%9E%E5%88%A5%E5%91%BD%E5%90%8D)
+命名有很大的學問，可以幫助其他人理解程式碼，參考 [好的變數(函式、類別)命名](https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part3/var_const_naming.html#%E5%A5%BD%E7%9A%84%E8%AE%8A%E6%95%B8%E5%87%BD%E5%BC%8F%E3%80%81%E9%A1%9E%E5%88%A5%E5%91%BD%E5%90%8D)
+
 ```js
 - 變數和函式 -> 小駝峰式(camelCase)： bookName、cardItem...
 - 類別 -> 巴斯卡(PascalCase)： ItemDecoration、CustomView...
@@ -80,9 +82,8 @@ name、description、label、text
 
 // 常用的函式開頭（動詞+名詞）
 setColor、removeAll、printText、addItem
-
 ```
-#### 基本符號
+##### 基本符號
 
 | 符號 | 名稱 | 用法 |
 | -------- | -------- | -------- |
@@ -92,7 +93,8 @@ setColor、removeAll、printText、addItem
 | "" | 雙引號 | 用於字串的宣告 |
 | '' | 單引號 | 在 JavaScript 中也用於字串的宣告 |
 
-#### 運算子（Operators）
+##### 運算子（Operators）
+
 對變數或值進行操作的字元，例如 `x + y = z` 其中的 = 和 + 符號。
 
 
@@ -106,27 +108,27 @@ setColor、removeAll、printText、addItem
 | `>`、`<`、`>=`和 `<=`|比較運算子（comparison） | 比較結果 -> 布林值||
 |`==` `===` `!=` `!==` |相等性運算子（equality） | 差異 -> 比較時是否會做強制轉型||
 
-#### Q: 位元運算好難理解？
+> Q: 位元運算好難理解？
+
 5 & 1 會被看成 0101 & 0001，得到結果 0001，回傳 1
 
-<br>
 
-#### Q: 關於 a++ 和 ++a 的差異
+> Q: 關於 a++ 和 ++a 的差異
+
 * `a++` 執行完整句，才跑 ++
 * `++a` 先執行完這個 ++，再去執行整句
 
 參考這篇 [i++ 與 ++i可以怎麼理解？](https://ithelp.ithome.com.tw/articles/10192800)，做完練習之後好理解很多，在一般迴圈裡看起來一樣的結果，但是透過表示式就可以看出差別。
 
-<br>
 
-#### Q: 更多運算子介紹？
+> Q: 更多運算子介紹？
+
 1. 存取運算子（object property access:）：物件特性，利用 `.` 或 `[ ]` 方式存取物件的特性，記得：存取運算子優先於其他運算子執行！
-
 例如 `obj.a` 或 `obj['a']`，點記號法簡單好使用，但 `[ ]` 卻可在索引值是變數或有特殊字元時能**保證完成值的存取**，例如：`obj['h e l l o']`（字串中間有空白）、`obj['#$%^&']`（特殊字元）、`obj['123']`（開頭為數字時）
 
 
-2. 字串運算子（string）：`+` 可串接兩字元並回傳結果，通常用於連接變數與字串。
-補充：如果數字要轉字串，除了調用函式外，也可以透過這個方式
+2. 字串運算子（string）：`+` 可串接兩字元並回傳結果，通常用於連接變數與字串。補充：如果數字要轉字串，除了調用函式外，也可以透過這個方式
+
 ```js
 // 字串運算子
 var A = 3
@@ -137,6 +139,7 @@ console.log(B)     //"3"
 console.log(${A})  //"3"
 ```
 3. 三元運算子（conditional / ternary）：又稱條件運算子，接受兩個運算元作為值且一個運算元作為條件。若條件為 true，運算子回傳「A值」，否則回傳「B值」
+
 ```js
 //條件?A值:B值
 condition ? A(true) : B(false)
@@ -144,6 +147,7 @@ condition ? A(true) : B(false)
 
 4. 一元運算子（unary）：只需要一個運算元的運算，例如邏輯否（`!`）、遞增遞減（`++`/`--`）和 typeof 等等都是屬於一元運算子，可以參考這篇 [JavaScript Unary Operators: Simple and Useful](https://scotch.io/tutorials/javascript-unary-operators-simple-and-useful#toc-summary-of-all-unary-operators)
 5. 關係運算子（relational）：比較兩運算元，並根據比較結果回傳布林值。例如 `in` 運算子可得知特定屬性是否存在於物件中
+
 ```js
 var product = {
   name: 'apple',
@@ -154,9 +158,9 @@ var product = {
 'date' in product; // false
 ```
 
-#### Q: 至於以上運算子的執行優先順序，可參考[資料](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table)
+> Q: 至於以上運算子的執行優先順序，可參考[資料](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table)
 
-### 參考資料：
+##### 參考資料：
 1. [What is “runtime”?](https://stackoverflow.com/questions/3900549/what-is-runtime)
 2. [深入淺出Runtime (一) 什么是Runtime？ 定义？](https://www.struggle3g.com/2018/09/07/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BARuntime%20(%E4%B8%80)%20%E4%BB%80%E4%B9%88%E6%98%AFRuntime%EF%BC%9F%20%E5%AE%9A%E4%B9%89%EF%BC%9F/)
 3. [運行時（runtime）是什么意思？應該怎樣深入且直觀地理解？](https://www.zhihu.com/question/20607178)

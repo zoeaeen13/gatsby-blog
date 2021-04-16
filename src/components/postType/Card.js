@@ -24,6 +24,12 @@ const PostCover = styled(Link)`
   ${props => `
     background-image: url(${props.url? props.url:''});
   `}
+  transition: opacity .3s ease-in-out;
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   @media (max-width: 800px) {
     width: 100%;
@@ -83,7 +89,7 @@ const Category = styled.div`
 `
 
 const Content = styled.div`
-  width: ${props => props.type === 'coding' ? '70%': '50%'};
+  width: ${props => props.type === 'coding' ? '75%': '50%'};
   padding-right: 10px;
 
   a {
@@ -93,6 +99,11 @@ const Content = styled.div`
     padding: 0;
     margin-bottom: 10px;
     color: #4a4a4a;
+
+    &:hover {
+      color: #C5322E;
+      text-decoration: none;
+    }
   }
 
   p {

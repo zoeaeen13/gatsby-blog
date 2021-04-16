@@ -6,8 +6,10 @@ tags: [JavaScript,Lidemy,Event Loop]
 description: 了解 JavaScript 執行特性及 Event Loop 事件循環機制
 date: '2020-11-12'
 ---
+
 本篇將透過解釋 Event Loop 機制，理解以下常見的名詞及 JS 執行特性
-```
+
+```html
 Single Thread 單執行緒
 Call stack 呼叫堆疊
 Blocking 阻塞
@@ -15,6 +17,9 @@ Event loop 事件循環
 Callback 回調
 Callback Queue 回調序列
 ```
+
+---
+
 ### Call Stack 執行堆疊
 JS 是一個單執行緒的語言，有一個單執行緒的 Runtime（執行環境系統），執行緒可以想像成執行工作的單位，單執行緒意味著它一次只能做一件事。在程式碼運行前，JS 的 Runtime（記憶體堆疊、默認執行環境、執行環境堆疊）會被建立。
 
@@ -26,7 +31,8 @@ call stack 的特性是後進先出，最後被堆上去的 EC 會作為目前�
 
 
 
-#### Q: 為什麼不能在一個函式呼叫它自己？
+> **為什麼不能在一個函式呼叫它自己？**
+
 無窮迴圈，會造成堆疊爆炸（Stack Overflow）
 ```js
 function foo() {
@@ -71,7 +77,8 @@ foo();
 ![](https://ithelp.ithome.com.tw/upload/images/20190928/20106580oVudusuOwX.jpg)
 
 
-#### Q: 零延遲（Zero delays）是什麼？
+> **Q: 零延遲（Zero delays）是什麼？**
+
 有時候我們會看到將 setTimeout 設成零，這麼做並非表示 callback function 會在 0 毫秒之後立刻執行，從上面 Event Loop 的運作我們了解到：這個 cb 會等待堆疊清空後才被執行到。
 
 呼叫 setTimeout 的使用，不代表過了那段時間就會執行，時間參數只是要求處理的最少等待時間，我們還得考慮到在 Queue 中等待的訊息數量，setTimeout 是讓我們把任務推遲到堆疊的最後再執行。
@@ -101,8 +108,9 @@ foo();
 // "this is a msg from call back"
 // "this is a msg from call back1"
 ```
-#### Q: 為什麼說不要做事件阻塞？
-意思是，讓你別在堆疊上放慢到不行的程式碼，這樣會影響瀏覽器最重要的東西── 畫面。
+> **Q: 為什麼說不要做事件阻塞？**
+
+意思是，讓你別在堆疊上放慢到不行的程式碼，這樣會影響瀏覽器最重要的東西 ─ 畫面！
 
 一般來說，瀏覽器會在每 16.6 毫秒（也就是每秒 60 個幀）重新渲染一次畫面，但當堆疊上有程式碼的時候，瀏覽器就不能顯示東西，造成卡住。比如 `forEach()` 裡面的函式就不會做非同步，而是在當前的堆疊中執行，當你對每個元素做緩慢處理的同步迴圈，就會讓瀏覽器的顯示一直被擋住。
 

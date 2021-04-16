@@ -26,13 +26,10 @@ React 主要思維是「**元件化**」，它賦予我們用很簡便的方式�
 
 以前因兩者分離，我們不得不自行寫邏輯將它們連結，一旦一方切換狀態、另一方就要更新，耗費大量心力來關注兩邊，當介面複雜時，容易出現資料和畫面不同步的 bug。
 
-<br>
-
 ---
-### React 的核心
-選擇 React，正是因為它能夠幫我們解決這些問題。
 
-<br>
+選擇 React，正是因為它能夠幫我們解決這些問題
+
 
 #### 元件化的設計（Component-Based）
 用簡單直觀的 JSX 語法自定義要呈現的 DOM 結構，通過接受不同的參數 props，來區分資料在哪些狀態下、介面應該分別長什麼樣子。
@@ -57,25 +54,24 @@ React 主要思維是「**元件化**」，它賦予我們用很簡便的方式�
 
 ---
 
-## React 的思考模式跟以前的思考模式有什麼不一樣？
+> #### React 的思考模式跟以前的思考模式有什麼不一樣？
 
-### 一、基於元件化思考（Component）
+#### 一、基於元件化思考（Component）
 React 中最基本的單元是元件（Component），每個元件又能包含一個以上的子元件，就像積木一樣，可以依照開發上的需求拼接，成為一個組合式的元件。理解 Component 具備的特性，才知道該怎麼思考：
 * 組合性（Compose） 
 
-比如一個基本的表單有 `< form>`、`< input>`、`< button>` 等要素，可以將他們組合成為一個新元件，擁有自行創造、組織和變化的可能性
+比如一個基本的表單有 `<form>`、`<input>`、`<button>` 等要素，可以將他們組合成為一個新元件，擁有自行創造、組織和變化的可能性
 ```jsx
-// < MailForm />
+// <MailForm />
 
-< form>
-    < input type="text" name="email" />
-    < button type="submit"></button>
-< /form>
+<form>
+    <input type="text" name="email" />
+    <button type="submit"></button>
+</form>
 ```
-另外，使用宣告式（Declarative）也讓程式碼更容易理解
+另外，使用宣告式（Declarative）也讓程式碼更容易理解，很容易可以看出這個元件的功能
 ```jsx
-// 使用宣告式（Declarative）UI 設計很容易可以看出這個元件的功能
-< MailForm />
+<MailForm />
 ```
 * 封裝性（encapsulation）
 
@@ -84,12 +80,12 @@ React 中最基本的單元是元件（Component），每個元件又能包含�
 function App() {
   const [value, setValue] = useState("");
   return (
-    < div className="App">
-      < input
+    <div className="App">
+      <input
         type="text"
         value={value}
       />
-    < /div>
+    </div>
   );
 }
 ```
@@ -99,29 +95,32 @@ function App() {
 
 > 為什麼可以複用？關於這點，我們得先探討── 元件（Component）是什麼樣的存在？
 
-在 React，一般用 JSX 來描述我們所需要的 DOM elements 結構（它可以用類似 HTML 語法），這些描述結構就是 React element，可以想像 React element 是機器的設計圖，而 React Component 就是機器，一台根據 React element 設計出來的機器，比如下圖放了數個 `< Line />` 元件，等同於一台台 `< Line />` 機器，每台都是由同一張設計圖出來的，他們構造相似，但彼此都是獨立的、互不干擾。
+在 React，一般用 JSX 來描述我們所需要的 DOM elements 結構（它可以用類似 HTML 語法），這些描述結構就是 React element，可以想像 React element 是機器的設計圖，而 React Component 就是機器，一台根據 React element 設計出來的機器，比如下圖放了數個 `<Line />` 元件，等同於一台台 `<Line />` 機器，每台都是由同一張設計圖出來的，他們構造相似，但彼此都是獨立的、互不干擾。
 
 ![](https://static.bookstack.cn/projects/reactjs101-zh-tw/Ch03/images/component.png)
 
 
-### 二、單向資料流（Unidirectional Data Flow）
+#### 二、單向資料流（Unidirectional Data Flow）
 結構雖然差不多，Componenet 卻能依照設定檔的不同來作調整。
 
 它根據不同的 state 和 props，出現對應的顯示結果（參考下一題），更準確來說，**唯一能影響 UI 變化、觸發 Component 重新渲染的關鍵就是── 資料變動（props 或 state）**。
 
 與我們過去的習慣截然不同，是當 React 發現 props 或是 state 更新時，就會重繪整個 UI，而不再像以往我們要自行寫顯示邏輯連結兩者，React 藉由「資料一有變動」就全部重繪（Always Redraw）方式，讓我們只需聚焦在資料本身的狀態，實現了單向資料流，讓狀態管理更清晰。
 
-<br>
+---
 
 
-## state 跟 props 的差別在哪裡？
+> **state 跟 props 的差別在哪裡？**
+
 在 React 中常常會到「props 或 state 更新時，就會自動渲染」這一句話，透過前面的了解可以知道他們兩者都代表資料來源，但是差別在哪裡？
 * props
+
 上層元件透過 props 傳遞給下層元件的資料，當下層元件一接觸到它，就會做出對應的變化，props 是一個 JavaScript Object 內容，是從外部傳進來元件的變數，不能改變。
 
 如範例，在上層元件 tag 中指定 `name` 屬性，它會統一放在 Object 作為參數（props）傳進 Welcome 這個元件，元件要存取到資料只需要透過 `props.name` 拿。
+
 ```jsx
-function Welcome(props) {     //props
+function Welcome(props) { //props
   return <h1>Hello, {props.name}, {question}</h1>;
 }
 
@@ -129,6 +128,7 @@ const element = <Welcome name="Mike" />; // component tags
 ```
 
 * state
+
 是在元件（Component）內部進行定義，由元件內部進行初始化、自行保存、控制以及修改。它可能會因為上層元件遞進來的 props 而改變，也可能是元件自身行為而改變，而 state 的變動同樣也會引起元件變化。
 
 ```jsx
@@ -136,7 +136,7 @@ function App() {
   const [value, setValue] = useState("");   // state
 
   return (
-    < div className="App">{value}< /div>
+    <div className="App">{value}</div>
   );
 }
 ```
@@ -145,30 +145,32 @@ function App() {
 
 所以，兩者最大的差異在於 state 可以被改變。只不過，並非用賦值方式直接改值，因為狀態（state）本身是 immutable，但我們可以安排一個新的狀態給它，它一改變就會觸發元件重新渲染，可呼叫 `setState()` 方法，來更新元件的資料狀態，並且會呼叫 render 方法來更新 UI。
 
-#### Q: props.children 是什麼？
-props 傳入的 Object 屬性，和 Component tag 的屬性是一一對應的，但有個例外就是 `props.children`，它是內建的屬性，表示該元件下的**所有子元件**，即 tag 與 tag 之間包裹的全部東西
+> **props.children 是什麼？**
+
+
+props 傳入的屬性，和 Component tag 屬性是一一對應，但有個例外就是 `props.children`，它是內建的屬性，表示該元件下的**所有子元件**，即 tag 與 tag 之間包裹的全部東西
 ```jsx
 function FancyBorder(props) {
   return (
-    < div>
+    <div>
        {props.children}  
     </ div>
   );
 }
 
-
 function WelcomeDialog() {
   return (
-    < FancyBorder>
-      < h1>早安</h1>
-      < p>要去哪裡</p>
+    <FancyBorder>
+      <h1>早安</h1>
+      <p>要去哪裡</p>
     </ FancyBorder>
   );
 }
 ```
 
 
-#### Q: 為什麼說要少用 state、多用 props？
+> **為什麼說要少用 state、多用 props？**
+
 沒有 state 的叫做無狀態元件，有 state 就是有狀態元件，在 React 一般會鼓勵多寫無狀態元件，要使用 props 而不是 state。
 
 原因其實很簡單，從上面了解到 props 在相同的输入下，它始終呈現同樣的輸出，因為它本身是不可變的，元件的變動可以預測，但 state 不一樣，state 是元件內部自行管理的資料，自行控制，正因為**狀態會帶來管理上的複雜性**，state 是保留給互動性高、會隨時改變的資料。

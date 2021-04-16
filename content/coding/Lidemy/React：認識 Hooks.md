@@ -10,9 +10,9 @@ date: '2020-12-07'
 Hook 是一種重複使用邏輯的方法，能用來在不同的 Component 之間重複使用邏輯，也讓 function component 擁有 state 或 class component 的功能。
 * 不能在迴圈、判斷式、或是嵌套 function 中呼叫 Hook
 * **只在 React function component 呼叫 Hook**（自定義的 Hook 也是），不要在一般 JavaScript function 中呼叫 Hook，因為這關連到它們連結的問題
-* 客製化 Hook：指的是用 `use` 開頭的方法，且有呼叫到其他 Hook，等於說可以將好幾種功能封裝在一起
+* Custom Hook：指的是用 `use` 開頭的方法，且有呼叫到其他 Hook，等於說可以將好幾種功能封裝在一起
 
-<br>
+---
 
 >**Q: React 怎麼知道哪個 component 對應哪個 state？ Hooks 如何與 component 關聯？**
 
@@ -32,6 +32,7 @@ const [state, setState] = useState(initialState);
 * 呼叫用途：宣告了一個會被 React 保留的變數
 * 參數：唯一的參數要放初始值，可以是 string、number、object 各種型態
 * 回傳：一對數值，目前的 state 值和可以讓你更新 state 的方法（可以從 event handler 或其他地方呼叫它來更新），setState 方法接收先前的 state，並回傳一個已更新的值
+
 ```jsx
 import React, { useState } from 'react'; // destructuring
 
@@ -44,11 +45,10 @@ function Example() {
     );
 }
 ```
-<br>
 
 從 React 引入 `useState` Hook API，呼叫它是用來在 function component 裡面保留 local state。
 
-舉例來說，在 `< Example />` 元件中我們呼叫了 useState 去宣告一個名為 count 的變數，一般情況下，變數會在 function 結束時就消失，但 state 變數卻會被 React 保留起來，即 React 在 re-render 元件時仍會記住目前的值，保留著這些 state，讓 function component 可以管理它的內部狀態，使用 setCount 方法將會更新 count 的值，給一個 newState 直接取代。
+舉例來說，在 `<Example />` 元件中我們呼叫了 useState 去宣告一個名為 count 的變數，一般情況下，變數會在 function 結束時就消失，但 state 變數卻會被 React 保留起來，即 React 在 re-render 元件時仍會記住目前的值，保留著這些 state，讓 function component 可以管理它的內部狀態，使用 setCount 方法將會更新 count 的值，給一個 newState 直接取代。
 
 在一個 Component 之中可以宣告多個 State，不再需要把各種無關的 State 硬是列在同一個 Object，操作 setState 時也不用同時考慮所有狀態該如何調整。
 
@@ -108,7 +108,6 @@ useEffect(
 
 如果想要 effect 只執行和清除一次（就是 mount 和 unmount 的時候），比如只會在第一次 render 要呼叫的 API，我們可以在第二參數傳遞一個空陣列 （`[]`），意思是，`useEffect` 沒有依賴任何在 props 或 state 的值，所以它的條件不會改變，它永遠不會被再次執行。
 
-<br>
 
 #### useEffect 的回傳用途：清除 effect
 當元件要被 unmount 時，我們需要清除 effect 所建立的資源時，同樣是使用 `useEffect`，回傳一個 function，告訴 React 在移除元件前要如何「清理/處理」舊的資源
@@ -129,6 +128,7 @@ useEffect(() => {
 先在最上層 Component 以 `createContext` 建立一個 Context Component ，並將要傳遞的資料放到它的參數，接著在下層元件或者更下層，便能直接將 Context Component 傳給 useContext，進而取得 value 裡的資料。這個做法解決了：
 1. 透過 Props 傳遞資料時常常會經過太多層的問題（Props drilling）
 2. 明明不需要該筆資料的 Component 卻擁有資料的情況
+
 ```jsx
 // 建立一個 Context
 const ContextStore = React.createContext({
@@ -137,9 +137,9 @@ const ContextStore = React.createContext({
 // 使用 ContextStore
 function Application() {
   return (
-    < ContextStore.Provider value={{todos: ['run']}}>
-      < Todos />
-    < /ContextStore.Provider >
+    <ContextStore.Provider value={{todos: ['run']}}>
+      <Todos />
+    </ContextStore.Provider >
   )
 };
 ```
@@ -149,15 +149,17 @@ function Todos() {
   const value = React.useContext(ContextStore)
   
   return (
-    < React.Fragment>
+    <React.Fragment>
       {
-        value.todos.map(todo => < div key={todo}>{todo} < /div> )
+        value.todos.map(todo => <div key={todo}>{todo} </div> )
       }
     </ React.Fragment>
   )
 }
 ```
+
 ---
+
 ### #4 內建 Hook：useRef
 主要有兩個功能，一個是存放 mutable 的值，一個是可以抓取 DOM 節點。
 
@@ -170,11 +172,11 @@ const refContainer = useRef(initialValue);
 #### 2. 抓取 DOM
 useRef 更多的應用，是可以作為讓我們抓取到 DOM 節點的 hook。
 
-呼叫 useRef 建立出一個物件實體，null 表示初始值設定為 null，將建立好的物件丟入我們要抓取的 DOM 元素的 ref attribute 中，做完這件事可以想像成我們對這個 input 有了控制權，`< input />` 的 DOM 透過 ref 存進 inputRef。
+呼叫 useRef 建立出一個物件實體，null 表示初始值設定為 null，將建立好的物件丟入我們要抓取的 DOM 元素的 ref attribute 中，做完這件事可以想像成我們對這個 input 有了控制權，`<input />` 的 DOM 透過 ref 存進 inputRef。
 
 ```jsx
 const inputRef = useRef(null);
-< input ref={inputRef} placeholder="Please input somthing"/>
+<input ref={inputRef} placeholder="Please input somthing"/>
 ```
 對現在綁定的 DOM node 做操作，需要到 `.current` properity 中
 ```jsx
@@ -199,8 +201,6 @@ cosnt MemoButton = memo(Button)
 然而，`memo` 是利用 shallowly compare 的方法確認 props 的值是否一樣， shallowly compare 在 props 是 Number 或 String 比較的是數值，基本型態的值不受影響，但當 props 是 Object 時，比較的卻是記憶體位置（reference）。正因為父元件重新渲染時，在父元件宣告的 Object 是會被重新分配記憶體位址，我們在這時候利用 `memo` 來防止重新渲染就會失效。
 
 所以，`memo` 也有提供了第二個參數，讓我們可以自訂比較 props 的方法。
-
-<br>
 
 #### 2. useCallback 使用
 除了上述方式，可以利用 `useCallback()` 讓 React 可以自動記住 Object 的記憶體位址

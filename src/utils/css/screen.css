@@ -168,10 +168,13 @@ body {
 .site-head-left a,
 .site-head-right a {
     display: block;
-    margin: 0;
-    padding: 10px 12px;
-    color: var(--color-base);
-    font-weight: 600;
+    margin: 0 15px;
+    color: #666;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-transition: all .3s ease-in-out;
+    line-height: 50px;
     opacity: 0.4;
 }
 

@@ -1,5 +1,5 @@
 ---
-title: 旅行日記｜葡萄牙辛特拉的忘年之交
+title: 辛特拉的忘年之交
 type: blog
 category: 旅行日記
 tags: [葡萄牙,泊]

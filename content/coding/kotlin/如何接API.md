@@ -40,7 +40,7 @@ implementation "com.squareup.okhttp3:logging-interceptor:4.0.1"
 #### 開啟網路權限
 
 ```java
-< uses-permission android:name=”android.permission.INTERNET” />
+<uses-permission android:name=”android.permission.INTERNET” />
 ```
 
 ---
@@ -104,7 +104,7 @@ object API {
 該怎麼理解 Interface？
 可以想像成一般資料是由後端提供，那前端就要去接這個資料，在 Interface 這個中介站裡面完成溝通，所以需要填入請求的類型、請求的參數、要求返回的資料等等。
 
-可以看到下方寫了三個函式，不同的 url 對應不同的網路請求，有些需要帶特定參數（例如某個 Int 值或 < xxRequest>）有些則不用，要求的回傳資料則用< xxResponse>去接，這個是我們自定義的 Data class，下一步會進行說明：
+可以看到下方寫了三個函式，不同的 url 對應不同的網路請求，有些需要帶特定參數（例如某個 Int 值或 <xxRequest>）有些則不用，要求的回傳資料則用<xxResponse>去接，這個是我們自定義的 Data class，下一步會進行說明：
 
 ```java
 interface Api_Interface {
@@ -206,10 +206,10 @@ CLEARTEXT communication to f5234a33.ngrok.io not permitted by network security p
 1. 在 res 下新增一個名為 xml 資料夾，然后建立一个.xml 文件，取名 network_security_config
 
 ```java
-< ?xml version="1.0" encoding="utf-8"?>
-< network-security-config>
-    < base-config cleartextTrafficPermitted="true" />
-< /network-security-config>
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
 ```
 
 ![](https://i.imgur.com/hOnRc6k.png)

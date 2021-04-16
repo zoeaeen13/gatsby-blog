@@ -166,7 +166,7 @@ ViewModel，就是要用來儲存 UI 需要的數據。
 
 寫一個 TestViewModel，繼承 ViewModel
 
-* 宣告一個資料型態為< TestData> 的 `MutableLiveData`---
+* 宣告一個資料型態為<TestData> 的 `MutableLiveData`---
 * 函式 requestTestData() 是給頁面 View 請求資料
 裡面實際上就是執行剛剛 Model 連線後的 Callback，為什麼要多繞一層呢？
 一般可直接把 call API 寫在 ViewModel，目前只有一支 API 看上去並不複雜，但如果考量到實際運作會有 N 個 API 要接，我會傾向把所有接 API 的程式碼寫在一起，而不是分散在各個 ViewModel---
@@ -174,7 +174,7 @@ ViewModel，就是要用來儲存 UI 需要的數據。
 ```java
 class TestViewModel: ViewModel() {
     //定義一個 MutableLiveData 的變數
-    private var testData = MutableLiveData< TestData>()
+    private var testData = MutableLiveData<TestData>()
 
     //給View請求api用
     fun requestTestData(){

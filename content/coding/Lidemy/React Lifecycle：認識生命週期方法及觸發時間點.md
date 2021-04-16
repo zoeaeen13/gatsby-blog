@@ -6,24 +6,24 @@ tags: [React,Lidemy]
 description: 元件從準備、渲染到頁面、狀態更新後等各個階段，組成了所謂的 lifecycle
 date: '2020-12-05'
 ---
-#### 什麼是 Component 的生命週期？
+> 什麼是 Component 的生命週期？
+
 不同於 function component，class component 是一個物件，裡面有許多內建函式，他們分別對應一個元件從準備、渲染到頁面、狀態更新後重新渲染、從頁面上移除前......等各個階段（時間點），組成了所謂的 Lifecycle。
 
 這些 Lifecycle 方法，讓我們得以掌握元件的生命週期，在開發過程中某些特定時刻能執行我們需要的程式，例如載入完元件後才去非同步抓取資料，更新 props 觸發處理事件。
 
 ---
 
-### 一、生命週期各個階段
-#### #1 Mounting 階段：會在元件被建立時被執行
+#### 一、生命週期各個階段
+##### #1 Mounting 階段：會在元件被建立時被執行
 當一個 component 被建立且加入 DOM tree 中時，其生命週期將會依照下列的順序呼叫這些方法：
 * constructor()
 * static getDerivedStateFromProps()
 * render()
 * componentDidMount()
 
-<br>
 
-#### #2 Updateing 階段
+##### #2 Updateing 階段
 當 prop 或 state 有變化時，就會產生狀態更新。當一個 component 處於更新階段，其生命週期將會依照下列的順序呼叫這些方法：
 
 * getDerivedStateFromProps()
@@ -32,15 +32,12 @@ date: '2020-12-05'
 * getSnapshotBeforeUpdate()
 * componentDidUpdate()
 
-<br>
-
-#### #3 Unmounting 階段
+##### #3 Unmounting 階段
 當一個 component 被從 DOM 中移除時，以下方法將會被呼叫：
 * componentWillUnmount()
 
-<br>
 
-#### #4 錯誤處理
+##### #4 錯誤處理
 當一個 component 在 render 過程、生命週期、或在某個 child component 的 constructor 中發生錯誤時，會呼叫以下方法處理：
 * getDerivedStateFromError()
 * componentDidCatch()
@@ -50,12 +47,11 @@ date: '2020-12-05'
 ---
 
 
-### 二、常用的生命週期方法
+#### 二、常用的生命週期方法
 
-#### 1. constructor
-`constructor()` 會在 mount 之前被呼叫，用來建構並初始化物件，這邊繼承 React.Component，當你需要初始化 state 或綁定方法時，才需要實作它。
+##### 1. constructor
+會在 mount 之前被呼叫，用來建構並初始化物件，這邊繼承 `React.Component`，當你需要初始化 state 或綁定方法時，才需要實作它。建立 constructor 時，你應該先呼叫 `super()`，帶入 props 參數，否則 `this.props` 的值會出現 undefined 問題。
 
-建立 constructor 時，你應該先呼叫 `super()`，帶入 props 參數，否則 `this.props` 的值會出現 undefined 問題。
 參考 [Why Do We Write super(props)?](https://https://overreacted.io/why-do-we-write-super-props/) 一文，super 會繼承父類別（指 React.Component），當我們呼叫過後，它才會配置 `this.props = props`，這時才能在建構子中使用 this。
 
 ```jsx
@@ -75,18 +71,16 @@ constructor(props) {
 ```jsx
 constructor(props) {
  super(props);
- // 請不要這樣做！
- this.state = { color: props.color };
+ this.state = { color: props.color }; // don't do that!å
+
+
+  // 1. 多此一舉，可以直接用 this.props.color
+  // 2. 產生 bug，prop 產生的更新根本不會出現在 state 中
+  // 3. 不能讓 state 依賴 prop
 }
 ```
-1. 多此一舉，可以直接用 this.props.color
-2. 產生 bug，prop 產生的更新根本不會出現在 state 中
-3. 不能讓 state 依賴 prop
 
-<br>
-<br>
-
-#### 2. render
+##### 2. render
 `render()` 是 class component 中唯一一個**必須實作**的方法。
 
 當 render 被呼叫時，它將會檢視 this.props 和 this.state 中的變化，並回傳透過 JSX 建立的 React element、Fragment、Portals 或 null，也就是說使用 setState 方法、更新父元件傳遞的 props，都會執行到 `render()`。
@@ -99,10 +93,7 @@ constructor(props) {
 
 大部分都會，唯一的例外情況是當 `shouldComponentUpdate()` 回傳的值為 false 的話，render() 將不會被呼叫到。
 
-<br>
-<br>
-
-#### 3. componentDidMount
+##### 3. componentDidMount
 在 component 被加入 DOM tree 中後，`componentDidMount()` 會馬上被調用。
 
 可以在該方法裡面呼叫 `setState()`，雖然會觸發一次額外的 render，但是是在瀏覽器畫面更新之前發生，使用者不會看見兩次 render 中過渡時期的狀態，只是可能導致效能上問題。
@@ -110,11 +101,7 @@ constructor(props) {
 * 設定 subscription
 * 綁定 DOM 事件
 
-<br>
-<br>
-
-
-#### 4. componentDidUpdate
+##### 4. componentDidUpdate
 ```jsx
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
@@ -123,17 +110,15 @@ componentDidUpdate(prevProps, prevState, snapshot)
 1. 對 DOM 進行運作的處理
 2. 網路請求
 
-記得設定條件，例如比較前後的 prop，不然每一次重新渲染都會執行一遍，很影響 component 效能
+記得設定條件，例如比較前後的 prop，不然每次重新渲染都執行一遍，很影響效能
 
-<br>
-<br>
 
-#### 5. componentWillUnmount
+##### 5. componentWillUnmount
 在 component 要從畫面上被移除前（unmount）馬上被呼叫，在這個方法內進行任何狀態的清除，像是取消計時和網路請求或是移除監聽。
 
 常用的生命週期方法大概就這幾種，其它比較少用的可以參考這篇 [React.Component](https://zh-hant.reactjs.org/docs/react-component.html) 和 [State 和生命週期](https://zh-hant.reactjs.org/docs/state-and-lifecycle.html) 有詳細的介紹與範例。
 
-<br>
+
 ---
 
 ### 三、元件渲染順序

@@ -14,22 +14,22 @@ date: '2020-10-11'
 從這張圖可以看到，只有第一次請求才需要回傳整份 HTML，之後的請求利用 AJAX 來拿到純資料內容（目前多以 JSON 格式為主），再進行局部更新。
 
 
-## SPA 的優缺點為何
+#### SPA 的優缺點為何
 
-### 優點
+##### 優點
 * 前後端分離，各司其職
 * 單一頁面可以瀏覽完所有資訊，資訊傳遞快
 * 結合 UI 的工作改由瀏覽器完成，對 Server 來說負擔變小，這樣可以處理更多的請求
 * 局部更新，使用者體驗較好
 
-### 缺點
+##### 缺點
 * 有些人會對 CSR 的 SEO 有疑慮
 * 第一次跑畫面需要較長的反應時間
 * 因 URL 網址都沒有改變，前端要自己管理必須自定狀態來做判斷
 
-<br>
+---
 
-## 這種後端負責提供只輸出資料的 API，前端一律都用 Ajax 串接的寫法，跟之前透過 PHP 直接輸出內容的留言板有什麼不同？
+#### 這種後端負責提供只輸出資料的 API，前端一律都用 Ajax 串接的寫法，跟之前透過 PHP 直接輸出內容的留言板有什麼不同？
 
 以前我們要從伺服器重新載入整個新頁面，這種稱為 Server-Side Render，意思是綁資料和結合 UI 的工作都在 Server 完成，之後回傳整份 HTML，瀏覽器拿到什麼就顯示什麼，但這樣一來產生的問題：
 
@@ -42,6 +42,7 @@ date: '2020-10-11'
 ![](https://eww-wp.s3.ap-south-1.amazonaws.com/wp-content/uploads/2020/02/14064824/single-page-applications.jpg)
 
 這種模式上的轉變，有賴於兩樣東西的幫助，第一個就是 Ajax 技術的愈發成熟：只需要在首次傳送時，傳入 HTML 檔以及 CSS 或 Javascript 檔，其餘資料可利用 AJAX 來取得，XML 或 JSON 格式資料來完成局部更新。
+
 ```js
 $.ajax('/api/getUser')
  .done(function(data){
@@ -53,7 +54,7 @@ $.ajax('/api/getUser')
 
 從以前 PHP 直接輸出整份 HTML，到前端改用 Ajax 串接，現在後端只要專注提供資料、產出 API，而前端的工作，不再只是把設計好的 UI 製作成 HTML 文件，需要學習以 JavaScript 來撰寫 Application Logic，或是呼叫 REST API，拿到 JSON 格式的資料，用相對應的模板生成內容。
 
-### 參考資料
+##### 參考資料
 * [前端小字典三十天【每日一字】– SPA](https://ithelp.ithome.com.tw/articles/10160709)
 * [前後端分離與 SPA](https://blog.techbridge.cc/2017/09/16/frontend-backend-mvc/)
 * [單一頁面應用程式](https://medium.com/@mybaseball52/%E5%96%AE%E4%B8%80%E9%A0%81%E9%9D%A2%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-c98c8a17081)
