@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { StaticQuery, graphql } from "gatsby"
 
 const HomeSection = styled.section`
-  width: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,10 +46,14 @@ const HomeContent = styled.div`
   }
 
   p {
-    font-size: 18px;
-    line-height:28px;
+    font-size: 15px;
+    line-height:26px;
 
-    span {
+    .italic {
+      font-style: italic;
+    }
+
+    .bold {
       font-weight: bold;
     }
   }
@@ -66,11 +70,11 @@ function HomeBio() {
             <div>
               <HomeBackground url='https://images.unsplash.com/photo-1618072691851-5319b71f2dc3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=716&q=80'/>
               <HomeContent>
-                <p>I’m <span>Ubud</span>, a Front-End and Ghost CMS theme developer based in Cairo, Egypt. I left my full-time job at Trustious in 2016. Then I created Aspire Themes to provide simple, well-designed, and functional Ghost CMS themes.</p>
-                <p>Founded the Arabic blogging platform oktob.io in 2015 which was acquired by Toriom in 2017.</p>
-                <p>My goal is to work on something meaningful. I craft themes that offer value and joy to the communities and individuals who use them.</p>
-                <p>You can do a lot with a fast, powerful, and slick site that runs on Ghost. It makes me feel proud and happy to see my themes being used for a variety of purposes.</p>
-                <p>Thank you to everyone who has supported me over these years.</p>
+                <p>我是老余，目前是一名網頁前端開發者。</p>
+                <p>從 2016 年開始進行寫作，最早是為了記錄在北京和登山隊的日子，隨著自己身份轉變及生活經歷越來越多樣，單純的版面沒有辦法包容所有文章，而我希望兼容不同形式的分享，決定從 Blogger 離開、自己建立一個部落格，在這裡記錄我的登山、旅行、程式及瑜珈，分享我的學習和生活。</p>
+                <p>之所以是「TRAVEL IN TIME.」，取名來自我最喜歡的愛情電影<span className="italic"> About Time </span>中對穿梭時空的規則，<span className="bold">前往我曾經去過並能記住的地方</span>，有意識地去享受生活的小小快樂，我希望這裡是這麼一個存在，在飛速的人生路上幫我留下一個參照點，在平凡日常中獲得幸福。</p>
+                {/* <p>而我的理想，是找一座喜歡的城鎮住下，蓋棟簡單的房子，有個總讓我想笑的人在身邊，做著有意義、能創造價值的工作，按照自己想要的方式生活下去。</p> */}
+                <p>謝謝你的造訪</p>
               </HomeContent>
             </div>
           </HomeSection>

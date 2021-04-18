@@ -19,7 +19,7 @@ const BlogPostTemplate = (props) => {
   const post = props.data.markdownRemark
   const siteTitle = props.data.site.siteMetadata.title
   const tags = post.frontmatter.tags
-
+console.log('post', post)
   const disqusConfig = {
     shortname: 'gatsby-zoeaeen13',
     config: { identifier: props.uri, title: post.frontmatter.title},
@@ -80,6 +80,9 @@ export const pageQuery = graphql`
       id
       excerpt
       html
+      tableOfContents(
+        maxDepth: 6
+      )
       frontmatter {
         title
         date(formatString: "MMM DD, YYYY")
