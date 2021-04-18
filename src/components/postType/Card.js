@@ -144,7 +144,7 @@ const PostCard =  ({ sub, type, node }) => {
     </Category>
     <Content type={type}>
       <Link to={node.fields.slug}>{node.frontmatter.title || node.fields.slug}</Link>
-      <p>{node.excerpt}</p>
+      <p>{node.excerpt !== '…'? node.excerpt : ''}</p>
     </Content>
     {node.frontmatter.thumbnail && <PostCover to={node.fields.slug} url={node.frontmatter.thumbnail.childImageSharp.fluid.src} />}
   </PostArticle>

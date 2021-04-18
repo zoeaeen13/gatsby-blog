@@ -6,6 +6,7 @@ import mountainImg from '../images/category/mountain.jpeg'
 import kotlinImg from '../images/category/kotlin.jpeg'
 import lidemyImg from '../images/category/lidemy.png'
 import travelImg from '../images/category/travel.jpeg'
+import weeklyJournalImg from '../images/category/weeklyjournal.jpeg'
 
 const ImageContainer = styled(Link)`
   background-position: center;
@@ -39,6 +40,9 @@ const CategoryBanner = ({ category }) => {
       break;
     case '旅行日記':
       img = travelImg
+      break;
+    case 'Weekly Journal':
+      img = weeklyJournalImg
       break;
     default:
       break;

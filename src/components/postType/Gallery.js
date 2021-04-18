@@ -116,7 +116,7 @@ const PostGallery =  ({ node }) => {
           <h3>{node.frontmatter.title}</h3>
         </PostDetail>
       </PostCover>
-      <PostContent>{node.excerpt}</PostContent>
+      <PostContent>{node.excerpt !== '…'? node.excerpt : ''}</PostContent>
     </PostCard>
   )}
 
