@@ -16,27 +16,8 @@ const AboutPage = ({ data }, location) => {
       <article className="post-content" style={{padding: '3vw 0'}}>
         <div className="post-content-body">
           <img style={{paddingBottom: '2vw'}} src={aboutImg}/>
-          {/* <h3 id="dynamic-styles">Dynamic styles</h3> */}
-          <p>
-            London comes with photo-centric main layout best suited to
-            photography, graphics portfolios and other image-heavy uses.
-          </p>
-          <p>
-            Both post and page templates are light and minimal, with all the
-            focus on the content while the design of the theme gets out of the
-            way. Beneath the hood, London enjoys the full power of the{" "}
-            <a href="https://docs.ghost.org/api/handlebars-themes/">
-              Ghost Handlebars Theme API
-            </a>{" "}
-            to provide limitless customisation options and dynamic styles.
-          </p>
-          <p>
-            Don't forget to check out the{" "}
-            <a href="https://docs.ghost.org/integrations/">
-              Ghost Integrations Directory
-            </a>{" "}
-            for more ways to integrate Ghost with your favourite services.
-          </p>
+          <p>我是老余，目前是一名網頁前端開發者，專注於技術學習與寫作，近期開啟一週一天的遠距工作模式，希望未來成為日常。</p>
+          <p>人生理想，是找一座喜歡的城住下，蓋棟簡單的房子，有個總讓我想笑的人在身邊，做著有意義、能創造價值的工作，按照自己想要的方式生活下去。</p>
         </div>
       </article>
     </Layout>

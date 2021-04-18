@@ -7,7 +7,6 @@ import { PostCard } from "../components/postType"
 const TagPageTemplate = ({pageContext, data, location}) => {
     const tag = pageContext.tag
     const tagList = pageContext.tags
-    console.log('tagList________', pageContext)
     const posts = data.allMarkdownRemark.edges
     const siteTitle = data.site.siteMetadata.title
 

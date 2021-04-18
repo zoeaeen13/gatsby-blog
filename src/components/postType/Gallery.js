@@ -99,6 +99,7 @@ const PostDetail = styled.article`
     padding: 0;
     font-family: "IBM Plex Serif",source-han-serif-tc,serif;
     font-size: 28px;
+    line-height: 32px;
   }
   h5 {
     font-size: 13px;

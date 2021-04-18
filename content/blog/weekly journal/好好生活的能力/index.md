@@ -2,7 +2,6 @@
 title: '#3 好好生活的能力' 
 type: blog
 category: Weekly Journal
-mark: true
 tags: [yoga]
 date: "2019-02-03"
 thumbnail: ./cover.jpeg

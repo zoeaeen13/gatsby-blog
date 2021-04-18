@@ -3,6 +3,7 @@ title: 世界徒步攻略｜科西嘉島 GR20 縱走之旅
 type: blog
 category: 旅行日記
 tags: [那些年我們去縱走,GR20]
+mark: true
 date: '2019-07-21'
 thumbnail: ./cover.jpeg
 ---
