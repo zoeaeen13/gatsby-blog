@@ -7,7 +7,7 @@ description: 了解網頁攻擊原理及其防範方法
 date: '2020-10-11'
 ---
 
-#### 1. SQL Injection 的攻擊原理以及防範方法
+###1. SQL Injection 的攻擊原理以及防範方法
 又稱 SQL 隱碼或 SQL 注碼，發生於應用程式與資料庫層的安全漏洞。
 簡單來說，利用在輸入的字串之中夾帶 SQL 指令，因程式設計者**忽略了字元檢查**，這些夾帶進去的惡意指令就會被資料庫伺服器誤認為是正常的 SQL 指令而執行，因此資料庫遭到破壞，讓攻擊者有了擅自竊取、修改、挪動或刪除資料的可能：
 
@@ -15,7 +15,7 @@ date: '2020-10-11'
 * 透過更改語法邏輯或加入特殊指令的方式
 
 
-##### 常見攻擊手法
+####常見攻擊手法
 1. 略過權限檢查（Authorization Bypass）
 
 ```sql
@@ -34,7 +34,7 @@ SELECT * FROM users WHERE name = 'name' AND password = 'password'
 
 **SQL Injection，就是駭客透過修改 SQL 語句，改變他的語意，達成竊取資料/破壞資料的行為**
 
-##### 如何避免
+####如何避免
 
 1. 過瀘字串「'」或「"」
 2. 限制輸入字元格式並檢查輸入長度、資料格式
@@ -43,7 +43,7 @@ SELECT * FROM users WHERE name = 'name' AND password = 'password'
 5. PDO 防止注入，預處理
 
 
-##### 筆記：Prepared Statements 預處理語句
+####筆記：Prepared Statements 預處理語句
 
 Prepared Statements 方式，是運用**預處理**的概念來解決這個問題。
 以往的傳統寫法是在程式裡拼接，再發送到 Mysql 中，後者沒辦法對傳入的東西判斷是否正常，但是當我們先發送一份模板到 Mysql Server 做預處理，再傳參數過去，之後不管怎麼注入什麼，Mysql Server 都知道是變量。
@@ -94,7 +94,7 @@ foreach ($stmt as $row) {
 
 ---
 
-#### 請說明 XSS 的攻擊原理以及防範方法
+###請說明 XSS 的攻擊原理以及防範方法
 XSS，又稱跨網域攻擊（Cross-Site Scripting），我們都知道可以寫在網頁裡，讓瀏覽器執行的一種程式碼稱為 JavaScript，只要使用 <`script`> 標籤，就可以在裡面撰寫一些 JavaScript 程式碼，讓網頁具有動態、互動的效果，但是
 
 * Stored XSS（儲存型）
@@ -110,13 +110,13 @@ DOM 是描述 HTML 文件的表示法，也就是我們常看到的、可以使�
 
 
 
-##### 如何防範
-###### 1. 儲存型和反射型
+####如何防範
+#####1. 儲存型和反射型
 * PHP htmlspecialchars 函數：轉換HTML 特殊符號為僅能顯示用的編碼
 
 前兩種 Stored、Reflected 由後端進行防範，使用者輸入的內容都需要經過檢查，比如刪除 <`script`>、`onerror=` 及其他任何可能執行程式碼的字串，或改為純文字顯示，替換字元即可
 
-###### 2. DOM-Based 防範
+#####2. DOM-Based 防範
 由前端來防範，選擇正確的方法和屬性來動態操作 DOM，比如將底下 innerHTML 改為 innerText，因為如果 name 插入 HTML 字串，將會被解析成 DOM 物件
 ```js
 document.getElementById('show_name').innerHTML = name;
@@ -124,12 +124,12 @@ document.getElementById('show_name').innerHTML = name;
 
 ---
 
-#### 請說明 CSRF 的攻擊原理以及防範方法
+###請說明 CSRF 的攻擊原理以及防範方法
 CSRF，跨站請求偽造（Cross Site Request Forgery），通過一些技術手段欺騙用戶的瀏覽器，去存取一個自己**曾經認證過的網站**並執行一些操作，如發送郵件、發訊息、甚至財產操作如轉帳和購買商品。
 
 由於瀏覽器曾經認證過，所以被存取的網站會認為是真正的用戶操作而執行，只能說保證請求發自某個用戶的瀏覽器，卻**不能保證請求本身是用戶自願發出**。
 
-> ##### 案例
+> ####案例
 ```html
 一家銀行用以執行轉帳操作的URL位址：
 https://bank.example.com/withdraw?account=AccoutName&amount=1000&for=PayeeName
@@ -147,7 +147,7 @@ CSRF 無法獲取用戶的帳戶控制權，也不能直接竊取用戶的任何
 
 
 
-##### Server 的防禦
+####Server 的防禦
 因為是在不同的 domain 底下卻能夠偽造出「使用者本人發出的 request」，CSRF 的核心概念是「Cross Site Request」，因此可以思考 => **如何擋掉從別的 domain 來的請求？**
 
 1. **檢查 Referer 欄位**
@@ -203,7 +203,7 @@ Set-Cookie: session_id=ewfewjf23o1; SameSite
 
 > 唯一問題是沒辦法擋掉 GET 形式的 CSRF，這點要注意
 
-##### 參考資料
+####參考資料
 * [攻擊行為－SQL 資料隱碼攻擊 SQL injection](https://ithelp.ithome.com.tw/articles/10189201)
 * [pdo防止注入的原理](http://lk1ngaa7.github.io/2016/01/25/pdo-with-mysql/)
 * [PHP中如何防止SQL注入](https://blog.csdn.net/sky_zhe/article/details/9702489)

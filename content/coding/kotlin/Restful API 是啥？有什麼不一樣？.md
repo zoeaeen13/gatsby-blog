@@ -13,13 +13,13 @@ date: '2020-03-10'
 
 在解釋 Restful API 前，我們先來認識一下 HTTP 協定和它的請求方法：
 
-### HTTP 協定
+##HTTP 協定
 全名 Hypertext Transfer Protocol（超文本傳輸協定）為了讓客戶端和伺服器端的要求回應的規格統一，而出現的一定規範
 * 客戶端 Client side：發送要求 Request
 * 伺服器端 Server side：接收 Request，給出回應 Response
 
 
-#### HTTP Method 請求方法
+###HTTP Method 請求方法
 
 常見有 GET / POST / PUT / DELETE 幾種方法，正好會對應到資料庫基本操作 CRUD 增刪查改
 
@@ -48,7 +48,7 @@ date: '2020-03-10'
 
 ---
 
-### Restful API
+##Restful API
 
 REST，全名 Representational State Transfer（具象狀態傳輸）是一種設計風格，Restful 只是轉為形容詞，Restful API 則是形容以此規範設計的 API。
 
@@ -67,7 +67,7 @@ REST，全名 Representational State Transfer（具象狀態傳輸）是一種�
 > 為了操作這些資源（Resources），網路的 components（即 clients 跟servers）透過標準化的介面（即 HTTP）來溝通並交換這些資源的 representations
 
 
-#### RESTful API 三種組成
+###RESTful API 三種組成
 1. Nouns 名詞
 定義資源位置的 URL，每個資源在網路上都會有**唯一位置**，就如每戶人家都有唯一的地址一樣
 2. Verbs 動詞
@@ -92,7 +92,7 @@ REST，全名 Representational State Transfer（具象狀態傳輸）是一種�
 
 ---
 
-#### RESTful API 優點
+###RESTful API 優點
 
 * 統一 API 接口：唯一 URL 表示 Resource 資源位置
 以往的一般 API 可能會分別向 A、B、C 三者請求，從不同的對方來完成動作，RESTful API 的優點是，是讓上述不同的請求動作由同一位完成---
@@ -106,14 +106,14 @@ REST，全名 Representational State Transfer（具象狀態傳輸）是一種�
 即所有資源可以用 URI 定位，而且這個定位與其他資源無關，也不會因為其他資源的變化而變化，資源相互的依賴性降低---
 
 
-#### URI 名詞
+###URI 名詞
 URI 由 prefix + API endpoint 組成。API endpoint 的設計重點：
 * 一般資源會用複數名詞
 * 唯一資源（即對於 client 而言只有一份的資源）用單數名詞。例如 user 就是指目前使用者
 * 資源的層級架構。例如 `/books/123/chapters/2`
 
 
-#### Status Code 狀態碼
+###Status Code 狀態碼
 * 2xx = Success（成功）
 * 3xx = Redirect（重定向）
 * 4xx = User error（客戶端錯誤）
@@ -139,7 +139,7 @@ HTTP 狀態碼表明一個 HTTP 要求是否已經被完成，代表 **API 層�
 
 
 
-#### 參考資料
+###參考資料
 1. [API 是什麼? RESTful API 又是什麼?](https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638) 
 2. [什麼是 REST? RESTful?](https://medium.com/@cindyliu923/%E4%BB%80%E9%BA%BC%E6%98%AF-rest-restful-7667b3054371)
 3. [休息(REST)式架構? 寧靜式(RESTful)的Web API是現在的潮流？](https://progressbar.tw/posts/53)

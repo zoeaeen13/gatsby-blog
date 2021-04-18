@@ -6,7 +6,7 @@ tags: [React,Lidemy]
 description: Hook 是一種重複使用邏輯的方法，讓 function component 可以擁有 state 的功能。
 date: '2020-12-07'
 ---
-#### 什麼是 Hook？
+###什麼是 Hook？
 Hook 是一種重複使用邏輯的方法，能用來在不同的 Component 之間重複使用邏輯，也讓 function component 擁有 state 或 class component 的功能。
 * 不能在迴圈、判斷式、或是嵌套 function 中呼叫 Hook
 * **只在 React function component 呼叫 Hook**（自定義的 Hook 也是），不要在一般 JavaScript function 中呼叫 Hook，因為這關連到它們連結的問題
@@ -24,7 +24,7 @@ Hook 是一種重複使用邏輯的方法，能用來在不同的 Component 之�
 
 ---
 
-### #1 內建 Hook：useState
+###1 內建 Hook：useState
 ```jsx
 const [state, setState] = useState(initialState);
 // 會回傳一個 state 的值（value），以及更新該 state 的方法（setter function）
@@ -72,7 +72,7 @@ const [state, setState] = useState(() => {
 
 ---
 
-### #2 內建 Hook：useEffect
+###2 內建 Hook：useEffect
 ```jsx
 useEffect(didUpdate);
 // 傳入一個指令
@@ -80,12 +80,12 @@ useEffect(didUpdate);
 
 預設情況下，`useEffect` 會在每一個完整 render 結束後執行裡面的程式碼。
 
-#### 為什麼要呼叫 useEffect
+###為什麼要呼叫 useEffect
 使用這個 Hook，React 就知道你的 component 在 render 後要做什麼事情，而在 component 內部呼叫 useEffect，讓我們可以拿到 state 和任何 props。
 
 有一些操作，比如網路請求、監聽事件、訂閱、或手動改變 DOM 等「side effect」，他們可能會影響其它元件，或是在 render 期間還不能觸發的操作，都會被寫在 `useEffect` 裡面，等到 DOM 更新之後才去執行的程式碼。
 
-#### 每次 render 完都要呼叫嗎
+###每次 render 完都要呼叫嗎
 但每次 render 就執行一次，並不符合實際上的應用，我們可以選擇讓它在某些值改變的時候才執行，類似監聽某個值的變化來設定 useEffect 執行條件。
 
 參考 [有條件的觸發 effect](https://zh-hant.reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect)，如果它的依賴有改變才會觸發 `useEffect`，確認 array 裡有包含：
@@ -109,7 +109,7 @@ useEffect(
 如果想要 effect 只執行和清除一次（就是 mount 和 unmount 的時候），比如只會在第一次 render 要呼叫的 API，我們可以在第二參數傳遞一個空陣列 （`[]`），意思是，`useEffect` 沒有依賴任何在 props 或 state 的值，所以它的條件不會改變，它永遠不會被再次執行。
 
 
-#### useEffect 的回傳用途：清除 effect
+###useEffect 的回傳用途：清除 effect
 當元件要被 unmount 時，我們需要清除 effect 所建立的資源時，同樣是使用 `useEffect`，回傳一個 function，告訴 React 在移除元件前要如何「清理/處理」舊的資源
 ```jsx
 useEffect(() => {
@@ -122,7 +122,7 @@ useEffect(() => {
 ```
 ---
 
-### #3 內建 Hook：useContext
+###3 內建 Hook：useContext
 讓你不需要巢狀化就可以訂閱 React context，再也不用透過 render props 來得到 value，useContext 則是接收一個 Context 然後直接回傳 Context 裡面的資料。
 
 先在最上層 Component 以 `createContext` 建立一個 Context Component ，並將要傳遞的資料放到它的參數，接著在下層元件或者更下層，便能直接將 Context Component 傳給 useContext，進而取得 value 裡的資料。這個做法解決了：
@@ -160,16 +160,16 @@ function Todos() {
 
 ---
 
-### #4 內建 Hook：useRef
+###4 內建 Hook：useRef
 主要有兩個功能，一個是存放 mutable 的值，一個是可以抓取 DOM 節點。
 
-#### 1. 存放可變的值
+###1. 存放可變的值
 跟使用 useState 的改變值區別在於，它不會導致 re-render。useRef 回傳一個可變的 ref object，它的 `.current` 屬性被初始化為傳入的參數，回傳的 object 在元件的生命週期都將保持不變。
 
 ```jsx
 const refContainer = useRef(initialValue);
 ```
-#### 2. 抓取 DOM
+###2. 抓取 DOM
 useRef 更多的應用，是可以作為讓我們抓取到 DOM 節點的 hook。
 
 呼叫 useRef 建立出一個物件實體，null 表示初始值設定為 null，將建立好的物件丟入我們要抓取的 DOM 元素的 ref attribute 中，做完這件事可以想像成我們對這個 input 有了控制權，`<input />` 的 DOM 透過 ref 存進 inputRef。
@@ -186,11 +186,11 @@ const handleClick = () => {
 }
 ```
 ---
-### #5 內建 Hook：useMemo、useCallback 和 memo
+###5 內建 Hook：useMemo、useCallback 和 memo
 
 在 function Component，容易觸發重新渲染，如果遇到大型的網站，有大量的元件、子元件不斷被 re-render，將造成瀏覽器的重大負擔。而要進行 React 優化，最常見就是透過 useMemo()、memo 和 useCallback() 來搭配使用。
 
-#### 1. memo
+###1. memo
 
 父層狀態變了，底下的每個子元件都會做 re-render，就算它依賴的 props 或 state 沒有改變，React 提供了 `memo` 來幫助我們解決這個問題，**它是專用於 Component 的方法**。
 
@@ -202,7 +202,7 @@ cosnt MemoButton = memo(Button)
 
 所以，`memo` 也有提供了第二個參數，讓我們可以自訂比較 props 的方法。
 
-#### 2. useCallback 使用
+###2. useCallback 使用
 除了上述方式，可以利用 `useCallback()` 讓 React 可以自動記住 Object 的記憶體位址
 ```jsx
 const memoizedCallback = useCallback(
@@ -226,12 +226,12 @@ cosnt s = useMemo(() => {
 
 
 
-### 參考資料
+##參考資料
 * [Hook 概觀](https://zh-hant.reactjs.org/docs/hooks-overview.html)
 * [使用 State Hook](https://zh-hant.reactjs.org/docs/hooks-state.html)
 * [Hooks API 參考](https://zh-hant.reactjs.org/docs/hooks-reference.html#usecontext)
 * [使用 Effect Hook](https://zh-hant.reactjs.org/docs/hooks-effect.html)
 * [React Hooks (上)-useState&useEffect](https://medium.com/@Lieutenant1992/react-hooks-%E4%B8%8A-usestate-useeffect-37f45056fea8)
-* [【Day 24】 useRef](https://ithelp.ithome.com.tw/articles/10221937)
+* [Day 24】 useRef](https://ithelp.ithome.com.tw/articles/10221937)
 * [React 性能優化那件大事，使用 memo、useCallback、useMemo](https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/react-optimize-performance-using-memo-usecallback-usememo-a76b6b272df3)
 

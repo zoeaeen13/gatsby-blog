@@ -4,22 +4,21 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { PostCard } from "../components/postType"
 
-class TagPageTemplate extends React.Component {
-  render() {
-    const props = this.props
-    const tag = this.props.pageContext.tag
-    const posts = this.props.data.allMarkdownRemark.edges
-    const siteTitle = this.props.data.site.siteMetadata.title
+const TagPageTemplate = ({pageContext, data, location}) => {
+    const tag = pageContext.tag
+    const tagList = pageContext.tags
+    console.log('tagList________', pageContext)
+    const posts = data.allMarkdownRemark.edges
+    const siteTitle = data.site.siteMetadata.title
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO
-          // title={`#${tag}`}
           title={`#${tag.charAt(0).toUpperCase() + tag.slice(1)}`}
           keywords={[`${tag}`, `blog`, `gatsby`, `javascript`, `react`]}
         />
         <header className="tag-page-head">
-          <h1>#{tag}({props.data.allMarkdownRemark.totalCount})</h1>
+          <h1>#{tag}({data.allMarkdownRemark.totalCount})</h1>
         </header>
         <div className="post-feed">
           {posts.map(({ node }) => {
@@ -36,7 +35,6 @@ class TagPageTemplate extends React.Component {
         </div>
       </Layout>
     )
-  }
 }
 
 export default TagPageTemplate

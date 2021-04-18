@@ -614,15 +614,24 @@ body {
     letter-spacing: .48px;
 }
 
-.post-content-body h1,
-.post-content-body h2 {
-    margin: 0;
+.post-content-body h1 {
+    font-size: 3.6rem;
 }
-.post-content-body h3,
-.post-content-body h4,
-.post-content-body h5,
+.post-content-body h2 {
+    font-size: 3.2rem;
+}
+.post-content-body h3 {
+    font-size: 2.5rem;
+}
+.post-content-body h4 {
+    font-size: 2.3rem;
+}
+.post-content-body h5 {
+    font-size: 1.8rem;
+}
 .post-content-body h6 {
-    color: var(--color-base);
+    font-size: 1.5rem;
+
 }
 
 .post-content-body li {
@@ -654,9 +663,10 @@ body {
 }
 
 .post-content-body blockquote p {
+    font-size: 1.8rem;
+    font-weight: 400;
     margin: 0 0 1em 0;
     color: inherit;
-    font-size: inherit;
     line-height: inherit;
     font-style: italic;
 }

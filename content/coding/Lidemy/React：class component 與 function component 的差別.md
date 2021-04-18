@@ -11,10 +11,10 @@ date: '2020-12-10'
 但是，**hook 的出現改變了一切**，解決了 function component 不能擁有 state 的問題，也變相讓它擁有類似生命週期方法的操作。[前面](../React：認識 Hooks)已經分別介紹過生命週期和 hook，以下就他們的差別：
 
 
-#### 1. 兩者在渲染上的差別
+###1. 兩者在渲染上的差別
 function component 就是一個單純回傳 JSX 的函式，而 class component 是一個繼承 `React.Component` 的 JS 物件，它裡面必須調用一個 `render()` 方法，這個方法會回傳 JSX。
 
-#### 2. props 傳遞
+###2. props 傳遞
 ```jsx
 <Component name="Molly" />
 ```
@@ -39,7 +39,7 @@ class ClassComponent extends React.Component {
 }
 ```
 
-#### 3. 如何處理 state
+###3. 如何處理 state
 在以前 funciton component 是沒有狀態的，直到 `useState` 這個 hook 出現解決了這個問題，我們得以寫成 **stateful** function component。
 
 參考 [React hooks: not magic, just arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)，以 hook API 將元件的行為/狀態和它本身連結起來，利用陣列去做狀態管理，當呼叫 `useState` 時，會傳入初始值，然後回傳一個陣列，陣列裡面分別是狀態的 value 和它的 setter function：
@@ -51,14 +51,14 @@ class ClassComponent extends React.Component {
 
 之所以「**不能在條件式或迴圈調用 Hook**」，正因為它是依賴 cursor 來取得陣列中的值，如果改變了順序那麼資料和 setter 就不對
 
-#### 4. 優化效能提升
+###4. 優化效能提升
 * class component：即使狀態沒變化，只要調用到 setstate 就會觸發重新渲染
 * function component：會進行檢測，只有狀態值真正改變時，才會觸發渲染，換句話說就是提升了整體效能
 
-#### 5. 生命週期方法的實現
+###5. 生命週期方法的實現
 不像 class component 是繼承 `React.Component`，function component 沒辦法擁有那些內建的生命週期方法，例如 `componentDidMount()` 來處理 side effect，我們會希望在更新 DOM 之後執行我們的 effect，像是網路請求資料、設定 subscription 和 event handler 或手動改變 DOM 等等。
 
-###### * 無需清除的 Effect
+#####* 無需清除的 Effect
 在 React 更新 DOM 之後執行一些額外的程式碼。網路請求、手動變更 DOM、和 logging，直接執行，就不用再去記得它
 
 * class component：將 side effect 放入 `componentDidMount()` 和 `componentDidUpdate()`
@@ -114,7 +114,7 @@ function Example() {
 
 把 useEffect 視為 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 的組合，與其把 useEffect 考慮在 mount 或 update 階段都執行，不如認為它是每次 render 後就執行。
 
-###### * 需要清除的 Effect
+#####* 需要清除的 Effect
 有些設定對某些外部資料來源的 subscription，需要進行清除，以免造成 memory leak
 * class component：寫在 componentWillUnmount 方法裡面，在元件移出畫面前清除
 
@@ -154,9 +154,9 @@ componentWillUnmount() {
 
 ---
 
-### 參考資料
+##參考資料
 * [React.Component](https://zh-hant.reactjs.org/docs/react-component.html)
-* [【Day 8】Class component && Functional component](https://ithelp.ithome.com.tw/articles/10214751)
+* [Day 8】Class component && Functional component](https://ithelp.ithome.com.tw/articles/10214751)
 * [Understanding Functional Components vs. Class Components in React](https://www.twilio.com/blog/react-choose-functional-components)
 * [React Hooks 不是黑魔法，只是陣列](https://andyyou.github.io/2019/07/29/hooks-not-magic-just-arrays/)
 

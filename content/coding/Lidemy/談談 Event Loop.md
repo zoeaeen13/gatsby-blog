@@ -20,7 +20,7 @@ Callback Queue 回調序列
 
 ---
 
-### Call Stack 執行堆疊
+##Call Stack 執行堆疊
 JS 是一個單執行緒的語言，有一個單執行緒的 Runtime（執行環境系統），執行緒可以想像成執行工作的單位，單執行緒意味著它一次只能做一件事。在程式碼運行前，JS 的 Runtime（記憶體堆疊、默認執行環境、執行環境堆疊）會被建立。
 
 之後依序執行，一旦呼叫到其他函式，Global EC 會幫呼叫到的函式產生新的 Execution Context 放到 stack 上，當多個函式被呼叫就會產生多個 EC，依序堆疊上去，這被稱為執行堆疊（call stack）。
@@ -42,14 +42,14 @@ function foo() {
 foo();
 ```
 
-### Blocking 阻塞
+##Blocking 阻塞
 然而，有些東西就是跑特別慢，需要等待很長一段時間，比如網路請求、圖片請求、或純粹就是執行過程漫長的程式碼，當這些跑得慢的東西又處在目前的堆疊上，就會造成「Blocking（堵塞）」。
 
 如果現在是同步設定，那麼一旦發生 blocking，畫面就會壞掉、好像「卡住」的現象，這是因為瀏覽器被塞住、無法繼續渲染頁面，變成我們什麼事都做不了，而面對這種狀況，我們就需要「非同步回調（Async Callback）」機制。
 
 簡單來說，就是在需要跑比較久的程式碼中用上非同步方法（Asynchronous），裡面塞一個 callback function（簡稱 cb），這樣就會先執行一段程式碼，然後過段時間再回調裡面的 cb，不會立即執行到而造成阻塞。
 
-### Concurrency 並行機制
+##Concurrency 並行機制
 那肯定就會好奇，callback function 是怎麼做到會等待一段時間再執行？為什麼它能等到結束做、能監測什麼時候要結束等待？JavaScript Runtime 不是一件只能做一件事嗎？
 
 沒錯，JavaScript 的確是單執行緒，它在執行一段程式碼的時候，就不能同時紀錄 setTimeout 的要求、做 HTTP Request 網路請求，而讓這一切實現的關鍵並不是 JavaScript，而是**瀏覽器**。
@@ -60,7 +60,7 @@ foo();
 ![](https://i.imgur.com/TVo3hwu.png)
 
 
-### Event Loop 和 Callback Queue
+##Event Loop 和 Callback Queue
 那 `setTimeout()` 執行完畢後，裡面的 cb 該怎麼處理？剛剛說到會「回調」，那是丟回堆疊中直接執行嗎？
 
 當然不可能如此簡單粗暴，瀏覽器不會傻呼呼直接丟回堆疊上，這樣根本無法控制它出現的時機，Web APIs 會在執行完 `setTimeout()` 之後將它的 callback function 放到一個名為 Callback Queue 的地方，所有非同步執行的程式碼會被推到這裡等待執行。
@@ -71,7 +71,7 @@ foo();
 
 ![](https://i.imgur.com/PBYJawC.png)
 
-### 更進一步：認識瀏覽器的運行環境
+##更進一步：認識瀏覽器的運行環境
 從上面我們知道了在 JS Runtime 之外，瀏覽器還提供了 Web APIs、Queue、Event Loop 等等東西來幫助任務執行，整個瀏覽器的運作環境，包含 JS 引擎，我們稱為 JS Runtime Environment（JRE）
 
 ![](https://ithelp.ithome.com.tw/upload/images/20190928/20106580oVudusuOwX.jpg)
@@ -132,7 +132,7 @@ function asyncForEach(array, cb) {
 }
 ```
 
-### Q: 為什麼 JavaScript 會是單執行緒的程式語言？
+##Q: 為什麼 JavaScript 會是單執行緒的程式語言？
 > 為什麼 JavaScript 只能跑在一個 thread 上，一次只做一件事？
 
 與他的用途有關，當初 JavaScript 是為了在瀏覽器上運作，與使用者互動以及操作DOM而設計的，這決定了他只能是單執行緒，否則會帶來很複雜的同步問題。比如同時有兩個執行緒存取到同一個 DOM 節點：
@@ -141,14 +141,14 @@ function asyncForEach(array, cb) {
 
 瀏覽器要以哪個為主？為了避免這種麻煩才這樣設計，之前寫過 Android 開發，也發現會要求任何跟 UI 有關的操作都得在主執行緒進行，就是為了避免無法預料的狀況。
 
-### 小結
+##小結
 * 堆疊當下的程式碼會執行完畢，過程中不會被 async code 中斷
 * 就算 setTimeout() 延遲時間設定為 0，程式也不會立即執行到，依然會被排在 Callback Queue 等待堆疊清空
 * JavaScript 只能跑單執行緒，但瀏覽器像是提供了它運作多執行緒的可能，利用 Event Loop 機制去幫助 JavaScript 執行任務
 * 瀏覽器中，渲染畫面的優先權高於 callback function
 
 
-### 參考資料
+##參考資料
 * [Javascript [筆記] 理解 Event Loop,Call Stack, Event & Job Queue in Javascript](hhttps://milletbard.com/2019/11/25/JavaScript-event-loop/)
 * [並行模型和事件循環](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop)
 * [[筆記] 理解 JavaScript 中的事件循環、堆疊、佇列和併發模式](https://pjchender.blogspot.com/2017/08/javascript-learn-event-loop-stack-queue.html)

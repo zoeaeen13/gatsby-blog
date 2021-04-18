@@ -35,14 +35,14 @@ _I haven't really spent any time adding the JS animations or removing any unused
 
 _First time with Gatsby? Take a look on the [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
-## 🚀 Quick start
+#🚀 Quick start
 
 1.  **Create a Gatsby site.**
 
     Use `npx` and the Gatsby CLI to create a new project
 
     ```sh
-    # create a new Gatsby site using the blog starter
+    create a new Gatsby site using the blog starter
     npx gatsby new my-awesome-portfolio https://github.com/ImedAdel/gatsby-london
     ```
 

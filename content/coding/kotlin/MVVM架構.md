@@ -34,7 +34,7 @@ date: '2020-03-04'
 是不是有看沒有懂？
 初學 MVVM 得花一點時間，網路上解釋很多，想辦法把 ViewModel 和 LiveData 看懂，然後實作一遍。
 
-#### ViewModel，是什麼
+###ViewModel，是什麼
 讓處理資料的 Model 和處理畫面的 View 分離，ViewModel 以**生命周期**的方式**儲存**和 UI 相關的數據。
 * ViewModel 只在 Activity 存活
 * 只會創建一次，可以在一個生命週期裡的 `onCreate` 到 `OnDestroy` 之間保存實例，不會受到屏幕旋轉等 Configuration Change 影響
@@ -45,23 +45,23 @@ date: '2020-03-04'
 ![](https://i.imgur.com/78lwCP7.png)
 
 
-#### 用法
+###用法
 宣告一個 ViewModel 類，裡面會有 LiveData 變數，會通過 Activity/Fragment 持有 ViewModel 實例
 
 
-#### LiveData，又是什麼？
+###LiveData，又是什麼？
 它具有**生命週期感知**的功能，LiveData 行為跟 View 無關，是跟著  ViewModel、跟著整個生命週期，而感知功能是指 LiveData 會讓 Activity、Fragment 在活耀狀態時接收到資料的變化。
 * 在 ViewModel 中創建，然後可以通過 getter 方法在 Activity/Fragment 中取得
 * LiveData 是資料的包裝，包裝對象可以是任何資料型態，包括集合（比如List）
 * 當生命週期處於 `onStop` 或者 `onPause` 時，LiveData 不會回調資料更新，直至生命週期為 `onResume` 時，立即回調
 * 生命週期處於 `onDestory` 時，觀察者會自動刪除，防止內存洩漏
 
-#### 用法
+###用法
 宣告一個某資料型態的 LiveData，通常在 ViewModel 創建，當 Model 中有東西要儲存，就會放到 ViewModel 裡面的 LiveData
 
 ---
 
-### 來實作基本 MVVM 架構
+##來實作基本 MVVM 架構
 搭配 Retrofit，以 [JSONPlaceholder](https://jsonplaceholder.typicode.com/) 提供的 API，來練習 MVVM 架構。
 
 這次使用的資料格式很簡單，只有三項：
@@ -126,7 +126,7 @@ LiveData 有了值之後，就會通知在各頁面（Activity/Fragment）有訂
 
 ![](https://i.imgur.com/NLEtOgx.png)
 
-#### Model
+###Model
 
 稍微對流程有概念後，我們要建立一個 Model 來管理資料來源，這次以 API 來練習，就是執行取得和更新資料的地方，拿 API 回傳的 Response：
 
@@ -151,7 +151,7 @@ class ApiFunction{
     }
 }
 ```
-#### ViewModel
+###ViewModel
 
 ViewModel，就是要用來儲存 UI 需要的數據。
 
@@ -213,7 +213,7 @@ override fun onResponse(call: Call<TestData>?, response: Response<TestData>?) {
 
 ---
 
-#### View
+###View
 
 最後的 View ，它到底要做什麼？
 View 是負責處理顯示 UI 及與使用者互動，在這裡會用到一個東西叫「**Observer** (觀察者)」
@@ -222,7 +222,7 @@ Observer 定義了 `onChange()` 方法，這個方法是控制 LiveData 中資�
 
 而這個更新動作，會通過 `observe()` 方法來連接 Observer 和 LiveData，訂閱 LiveData 中的資料
 
-#### Observer 使用
+###Observer 使用
 
 **MainActivity.kt**
 
@@ -249,7 +249,7 @@ lateinit var testObserver: Observer<TestData>
 這也是為何會說可以用 ViewModel 來進行 Activity/Fragment 之間的通訊，因為他們共享數據。
 
 
-### Q&A
+##Q&A
 > Activity Stop 之後，不會崩潰？
 
 LiveData 把 Activity 生命周期合併分成了 Inactive 與Active 兩種狀態（`onStart` 與 `onResume` 為 Active，其他為 inactive）。處於非活躍狀態的話，是不會收到 Livedata 任何事件的變更。
@@ -274,6 +274,6 @@ App 需要頻繁非同步請求資料，比如請求網路調介面，這些都�
 通過`observe()` 方法裡的第一個參數 LifecycleOwner，來獲取生命週期，判斷時候是否 DESTROYED 狀態，是的話直接 return，等於綁定了生命週期。
 
 
-##### 參考資料
+####參考資料
 1. [LiveData的分析與簡單使用](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/705679/#outline__2)
 2. [Android MVVM 架構](https://ithelp.ithome.com.tw/articles/10224442)

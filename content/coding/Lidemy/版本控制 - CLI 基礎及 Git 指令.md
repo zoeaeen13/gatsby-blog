@@ -30,7 +30,7 @@ date: '2020-06-05'
 | less |  | 分頁顯示檔案內容|
 
 
-#### 💡 **mv**
+###💡 **mv**
 1. 移動
 可以使用相對路徑（同一資料夾底下）或絕對路徑（/）
 
@@ -47,7 +47,7 @@ $mv happy.txt sad     //把 happy.txt 改名成 sad 檔案
 ```
 
 
-#### 💡 **Vim 操作**
+###💡 **Vim 操作**
 * 參考 [超簡明 Vim 操作介紹](https://gitbook.tw/chapters/command-line/vim-introduction.html)
 * `i` -> 進入輸入模式
 * `esc` -> 一般模式，無法輸入文字，能複製、貼上、存檔或離開
@@ -58,7 +58,7 @@ $mv happy.txt sad     //把 happy.txt 改名成 sad 檔案
 
 
 
-### 組合指令
+##組合指令
 * pipe：將前面印出來的東西，交給 grep hi 這個指令（|）
 
 ```html
@@ -73,7 +73,7 @@ echo file.md > print.txt
 ```
 
 ---
-## Git 
+#Git 
 用來做**版本控制**。一般人做版本控制都是以「檔案」為單位，例如複製貼上，**不直觀**，因為寫程式時，需要知道程式碼誰寫的、什麼時候改的、為什麼要改這行
 * 希望每一個版本被保存起來，檔案多了要管理
 * 在軟體開發常用
@@ -94,7 +94,7 @@ echo file.md > print.txt
 
 > 一些 Git 問題
 
-#### Q: 開始進行版控？
+###Q: 開始進行版控？
 * `git init` 會在資料夾建立一個 .git 目錄，整個版控的精華就在這裡面
 * 空的目錄是無法被提交的，因為 Git 在計算、產生物件的時候，是根據「檔案變化的內容」去做計算的，內容不可以為空
 
@@ -103,7 +103,7 @@ $ git  init
 Initialized empty Git repository
 ```
 
-#### Q: 版控的流程，暫存區和儲存區？
+###Q: 版控的流程，暫存區和儲存區？
 用來查詢現在這個目錄的「狀態」
 
 ```html
@@ -126,14 +126,14 @@ $ git add *.html
 $ git add --all 或 git add .
 ```
 
-#### Q: 到底 git add --all 和 git add . 指令差別在？
+###Q: 到底 git add --all 和 git add . 指令差別在？
 差別在於，使用 Git 版本不同以及**執行指令的目錄位置**，後者只將當前目錄的所有檔案和子目錄內的檔案變更加入，前者是無論目前處於哪一層目錄，專案裡所有的異動都會被加至暫存區
 
 
-#### Q: 如果在 git add 之後又修改了那個檔案？
+###Q: 如果在 git add 之後又修改了那個檔案？
 編輯內容並沒有再次被加到暫存區，得再次使用 git add 指令加至暫存區
 
-#### Q: 存放到儲存區（Repository）？
+###Q: 存放到儲存區（Repository）？
 要完成 commit 指令才算是完成整個流程，而 commit 都只會處理暫存區（Staging Area）裡的內容
 * 加參數 `-m` 訊息，則不用進入 VIM 就能 commit
 不小心跳入 VIM 視窗的話，參考[簡易操作Vim](https://gitbook.tw/chapters/command-line/vim-introduction.html)
@@ -141,7 +141,7 @@ $ git add --all 或 git add .
 * `git add -am "message"` 合併 `git add` 和 `git commit` 兩個指令
 
 
-#### Q: 如何刪除檔案？
+###Q: 如何刪除檔案？
 在 Git 裡，不管是刪除檔案或是變更檔名，對 Git 來說都是一種「修改」
 1. 系統指令 `rm`，刪除檔案 X.html
 
@@ -177,13 +177,13 @@ rm 'X.html'
 X.html 的狀態從原本已經在目錄裡的 tracked 變成 Untracked 了
 
 
-#### Q: 什麼時候應該要 Commit？
+###Q: 什麼時候應該要 Commit？
 * 完成一個「任務」的時候
 * 下班的時候，可能還沒完全搞定任務，但至少先 Commit 今天進度，除了備份之外，也讓公司知道你今天有在努力工作(?)
 * 你想要 Commit 的時候就可以
 * 盡量細切 commit，把每個小功能做一次 commit
 
-#### Q: 更改 Commit 紀錄，使用 `--amend` 參數
+###Q: 更改 Commit 紀錄，使用 `--amend` 參數
 修改近期一次的 Commit Message
 改訊息就是修改了一次的歷史，**盡量不要在已經 Push 出去之後再修改**，可能會造成其它協作者困擾
 
@@ -198,7 +198,7 @@ $ git commit --amend --no-edit
 ```
 
 
-#### Q: 用 git log 查詢 commit
+###Q: 用 git log 查詢 commit
 查詢某些人的 Commit，例如協作者名為「Meng」
 
 ```html
@@ -211,33 +211,33 @@ $ git log --oneline --author="Meng22"
 $ git log --oneline --grep="hahaha"
 ```
 
-#### Q: 如何邊緣某些檔案
+###Q: 如何邊緣某些檔案
 
 ```html
 touch .gitignore   建立 .gitignore 檔案
 vim .gitignore     編輯內容，哪些檔案不要放進版本控制
 ---
 
-# 忽略名為text的檔案(檔名)
+忽略名為text的檔案(檔名)
 text.txt
 *.log*  忽略
 *.swp   忽略暫存檔
 
-# 忽略 config 目錄下的 database.yml 檔案
+忽略 config 目錄下的 database.yml 檔案
 config/database.yml
 
-# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
+忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
 /db/*.sqlite3
 ```
 
 
-#### Q: 拿到一個新專案的步驟
+###Q: 拿到一個新專案的步驟
 1. 加入版本控制 git init
 2. 建立 .gitignore 排除需要忽略的檔案，.gitignore 檔案也需要加入版控（其他協作者才知道）
 3. 用 `git add .` 加入檔案，因為是新增的檔案，不能直接用`git comiit -am` （他們還不在 staging 區）
 4. 但如果是已經加入過、修改的檔案，可直接用上面那個合併指令
 
-### 認識 branch
+##認識 branch
 在增加新功能、修正 Bug，或是想試一些新做法時，都可以另外做一個分支來進行，待做完確認沒問題之後再合併回來，不會影響正在運行的功能
 
 ```html
@@ -282,7 +282,7 @@ git merge tiger
 ```
 
 
-#### Q: Merge 合併時發生衝突（Conflict）
+###Q: Merge 合併時發生衝突（Conflict）
 
 ```html
 git merge bear
@@ -314,7 +314,7 @@ Changes not staged for commit:
 ```
 
 
-#### Q: 我剛剛 Commit 了，但我想要拿掉！
+###Q: 我剛剛 Commit 了，但我想要拿掉！
 
 ```html
 $ git reset

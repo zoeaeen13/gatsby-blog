@@ -15,18 +15,17 @@ padding: 20px;
 background: #F6F6F6;
 `
 
-const BlogPostTemplate = (props) => {
-  const post = props.data.markdownRemark
-  const siteTitle = props.data.site.siteMetadata.title
+const BlogPostTemplate = ({ data, pageContext, uri, location}) => {
+  const post = data.markdownRemark
+  const siteTitle = data.site.siteMetadata.title
   const tags = post.frontmatter.tags
-console.log('post', post)
   const disqusConfig = {
     shortname: 'gatsby-zoeaeen13',
-    config: { identifier: props.uri, title: post.frontmatter.title},
+    config: { identifier: uri, title: post.frontmatter.title},
   }
 
   return (
-    <Layout location={props.location} title={siteTitle}>
+    <Layout location={location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
@@ -41,15 +40,6 @@ console.log('post', post)
             <Link to={`/category/${kebabCase(post.frontmatter.category)}`} className="post-content-category">{post.frontmatter.category}</Link>
           </div>
         </header>
-        {/* {post.frontmatter.thumbnail && (
-          <div className="post-content-image">
-            <Img
-              className="kg-image"
-              fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
-              alt={post.frontmatter.title}
-            />
-          </div>
-        )} */}
         <div
           className="post-content-body"
           dangerouslySetInnerHTML={{ __html: post.html }}

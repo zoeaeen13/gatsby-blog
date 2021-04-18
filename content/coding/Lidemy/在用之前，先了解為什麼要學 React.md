@@ -31,21 +31,21 @@ React 主要思維是「**元件化**」，它賦予我們用很簡便的方式�
 選擇 React，正是因為它能夠幫我們解決這些問題
 
 
-#### 元件化的設計（Component-Based）
+###元件化的設計（Component-Based）
 用簡單直觀的 JSX 語法自定義要呈現的 DOM 結構，通過接受不同的參數 props，來區分資料在哪些狀態下、介面應該分別長什麼樣子。
 
 不再需要手動操作 DOM，**直接將資料和元件進行綁定，實現自動更新**，讓畫面的一切由資料本身決定，一旦資料改變時就牽動 UI 變動，每當 React 偵測到 props 或 state 更新時，將自動重繪整個元件，不再需要分別維護資料和畫面的一致性，讓 UI 保持穩定，開發者只需要關注資料的狀態。
 
 當然還一些其他好處，比如具有 JavaScript 基礎就能快速上手、幫你實現跨平台或是性能好等優點，但這些都是次要，React 的核心設計就是 Component 元件化和 State 狀態管理。
 
-#### 優點
+###優點
 * 模組化、維護性佳，還可以重複利用的元件 Component
 * JSX 跟 HTML 語法相似，方便描述 DOM 結構
 * 單向資料流，不會出現資料和畫面不一致的情況，因為任何改變全都由資料操作、自動渲染
 * 有 Virtual DOM 能最佳化複雜的 UI 效能
 * React 寫 UI 就像組積木一樣，具有擴展性
 
-#### 缺點及限制
+###缺點及限制
 * 學習門檻高，需要一定的時間來熟悉 React 各種用法和工具
 * 只處理 View/UI 的部分
 * JSX 語法，寫起來像是在 JavaScript code 中夾雜 HTML
@@ -54,9 +54,9 @@ React 主要思維是「**元件化**」，它賦予我們用很簡便的方式�
 
 ---
 
-> #### React 的思考模式跟以前的思考模式有什麼不一樣？
+> ###React 的思考模式跟以前的思考模式有什麼不一樣？
 
-#### 一、基於元件化思考（Component）
+###一、基於元件化思考（Component）
 React 中最基本的單元是元件（Component），每個元件又能包含一個以上的子元件，就像積木一樣，可以依照開發上的需求拼接，成為一個組合式的元件。理解 Component 具備的特性，才知道該怎麼思考：
 * 組合性（Compose） 
 
@@ -100,7 +100,7 @@ function App() {
 ![](https://static.bookstack.cn/projects/reactjs101-zh-tw/Ch03/images/component.png)
 
 
-#### 二、單向資料流（Unidirectional Data Flow）
+###二、單向資料流（Unidirectional Data Flow）
 結構雖然差不多，Componenet 卻能依照設定檔的不同來作調整。
 
 它根據不同的 state 和 props，出現對應的顯示結果（參考下一題），更準確來說，**唯一能影響 UI 變化、觸發 Component 重新渲染的關鍵就是── 資料變動（props 或 state）**。
@@ -177,7 +177,7 @@ function WelcomeDialog() {
 
 React 的核心精神是**單向資料流**，從 Component 的上層往下流，所以鼓勵多寫無狀態元件，盡量讓共用的 state 能往上層元件放，下層再透過 props 拿到，維持資料流的一致。
 
-### 參考資料
+##參考資料
 * [我們為什麼需要 React？](https://www.zhihu.com/question/47161776)
 * [React 教學 - React JavaScript UI Library](https://www.fooish.com/reactjs/)
 * [React 元件 (Components) | Props](https://www.fooish.com/reactjs/components-and-props.html#props-%E6%98%AF%E5%94%AF%E8%AE%80%E7%9A%84-read-only)

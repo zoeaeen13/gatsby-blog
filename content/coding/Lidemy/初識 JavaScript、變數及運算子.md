@@ -6,7 +6,7 @@ tags: [JavaScript,Lidemy]
 description: JavaScript 基本觀念、變數及運算子
 date: '2020-07-03'
 ---
-### JavaScript
+##JavaScript
 早期只能用在瀏覽器，透過它去操控畫面上的東西，瀏覽器會提供給 JS 一些方法。**JS 不能單獨執行，一定要有一個執行環境存在**，目前多數情況不是使用瀏覽器就是用 Node.js：
 
 * Node.js
@@ -42,7 +42,7 @@ date: '2020-07-03'
 
 <br>
 
-#### Q: 如何比較好理解 Runtime？
+###Q: 如何比較好理解 Runtime？
 
 直譯就是運行時間，run（跑、運行）time（時間）是一套比較底層的純 C 語言。在 stackoverflow 上有相關的討論「[What is "runtuime"?](https://stackoverflow.com/questions/3900549/what-is-runtime)」其中一段我認為比較好的解釋：
 
@@ -55,7 +55,7 @@ date: '2020-07-03'
 
 ---
 
-#### 變數（Variable）
+###變數（Variable）
 * 資料(值)的存放角色。和常數不同，想像變數是一個**暫時存放值**的盒子，而盒子是打開的，可以更動或抽換裡面的東西
 * 記住：**宣告變數**和**定義變數**是分開的
     - 宣告變數：`var foo`、`let foo`、`const foo`，ES6 之後有三種[宣告方式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Grammar_and_types)，之前只有定義變數沒有定義常數的方式
@@ -63,7 +63,7 @@ date: '2020-07-03'
     - 定義變數稱為**賦值**，宣告變數時如果沒有賦值的話，預設是 undefined
 
 
-##### 變數的命名規則
+####變數的命名規則
 * 數字不可用於開頭字元
 * 不可使用 JavaScript [保留字](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Future_reserved_keywords)，如 var、return 等
 * 又稱為 identifier，取名稱要有**識別性**，最好讓人一眼判斷這個變數代表什麼、要做什麼事
@@ -83,7 +83,7 @@ name、description、label、text
 // 常用的函式開頭（動詞+名詞）
 setColor、removeAll、printText、addItem
 ```
-##### 基本符號
+####基本符號
 
 | 符號 | 名稱 | 用法 |
 | -------- | -------- | -------- |
@@ -93,7 +93,7 @@ setColor、removeAll、printText、addItem
 | "" | 雙引號 | 用於字串的宣告 |
 | '' | 單引號 | 在 JavaScript 中也用於字串的宣告 |
 
-##### 運算子（Operators）
+####運算子（Operators）
 
 對變數或值進行操作的字元，例如 `x + y = z` 其中的 = 和 + 符號。
 
@@ -160,7 +160,7 @@ var product = {
 
 > Q: 至於以上運算子的執行優先順序，可參考[資料](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table)
 
-##### 參考資料：
+####參考資料：
 1. [What is “runtime”?](https://stackoverflow.com/questions/3900549/what-is-runtime)
 2. [深入淺出Runtime (一) 什么是Runtime？ 定义？](https://www.struggle3g.com/2018/09/07/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BARuntime%20(%E4%B8%80)%20%E4%BB%80%E4%B9%88%E6%98%AFRuntime%EF%BC%9F%20%E5%AE%9A%E4%B9%89%EF%BC%9F/)
 3. [運行時（runtime）是什么意思？應該怎樣深入且直觀地理解？](https://www.zhihu.com/question/20607178)

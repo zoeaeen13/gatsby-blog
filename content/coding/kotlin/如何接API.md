@@ -9,7 +9,7 @@ date: '2019-11-11'
 
 近期挑戰賽需要接 Api，來練習 Retrofit
 
-### 使用 Retrofit
+##使用 Retrofit
 由 Retrofit 2 封裝，後續交由 OkHttp 進行請求操作，操作攔截的話如 Time out 還是在 OkHttpClient 設定
 * Retrofit 2 則是遵循 RESTful 的 Http 框架進行封裝
 * 網路請求的動作主要由 OkHttp 進行
@@ -22,7 +22,7 @@ date: '2019-11-11'
 
 ---
 
-#### 加入第三方資源
+###加入第三方資源
 [OkHttp 3](https://square.github.io/okhttp/)、[Retrofit2](https://square.github.io/retrofit/) 最新版本參考
 
 ```java
@@ -37,7 +37,7 @@ implementation 'com.squareup.okhttp3:okhttp:4.2.1'
 implementation "com.squareup.okhttp3:logging-interceptor:4.0.1"
 ```
 
-#### 開啟網路權限
+###開啟網路權限
 
 ```java
 <uses-permission android:name=”android.permission.INTERNET” />
@@ -45,9 +45,9 @@ implementation "com.squareup.okhttp3:logging-interceptor:4.0.1"
 
 ---
 
-### 1. 創建 Retrofit 單例物件
+##1. 創建 Retrofit 單例物件
 
-#### 將呼叫 Api 寫成一個全域實例
+###將呼叫 Api 寫成一個全域實例
 >一個類只有一個實例，並且該類提供了全域訪問
 
 參考 [Android 設計模式：單例模式](https://code.tutsplus.com/zh-hant/tutorials/android-design-patterns-the-singleton-pattern--cms-29153)，了解很多時候我們都只需要物件的一個實例，像是快取記憶體、OkHttpClient、HttpLoggingInterceptor、Retrofit、Gson、SharedPreferences 和倉庫類等。如果這些類產生多個物件實例，就會遇到許多問題，比如異常的 APP 反應，資源過度使用和其他混亂結果。
@@ -78,7 +78,7 @@ object API {
 }
 ```
 
-#### addInterceptor 攔截器
+###addInterceptor 攔截器
 * 印東西 [Logging Interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
 可以做什麼？
 塞東西進去每一個網路請求，可以印出內容如下，印出類型選擇：NONE、BASIC、HEADERS、BODY 等等，代表內容的詳盡程度
@@ -98,7 +98,7 @@ object API {
 
 ---
 
-#### 請求接口 Api Interface
+###請求接口 Api Interface
 創立 Http 的請求接口，例如 `@GET` 和 `@POST` 用法，了解 `@Body` 和 `@Query` 參數作用。
 
 該怎麼理解 Interface？
@@ -120,7 +120,7 @@ interface Api_Interface {
 
 ---
 
-### 2. 定義資料格式
+##2. 定義資料格式
 
 和後端溝通所需的資料型態，以便於對接。如果要接的資料長這個樣子，可能還比較好拆解：
 ![](https://i.imgur.com/0Q8Hnll.png)
@@ -158,7 +158,7 @@ data class EnterResponse(
 
 ---
 
-### 3. 在 Activtiy.kt 實作接後端資料（異步請求）
+##3. 在 Activtiy.kt 實作接後端資料（異步請求）
 
 執行 Call function 的 **enqueue** 方法，需帶入 Callback 處理回傳結果，從回傳結果（onResponse）裡面可拿到 Service 回傳的資料
 
@@ -192,7 +192,7 @@ API1.apiInterface.gameStatus().enqueue(object: Callback<PlayerResponse>{
 
 ---
 
-#### 🔨使用 http 會被 Android Studio 擋下的問題
+###🔨使用 http 會被 Android Studio 擋下的問題
 
 如果發送請求一直不過，除了沒開網路權限，還要查看是不是印出以下內容，可能因安全性問題被擋下
 ```java
@@ -222,7 +222,7 @@ CLEARTEXT communication to f5234a33.ngrok.io not permitted by network security p
 
 ---
 
-#### Tips
+###Tips
 
 * 最好在 onFailure 和 onResponse 印出來內容，如果出錯可以看到是什麼原因
 * 設條件 `response.isSuccessful` 或判斷狀態碼 `response.code() == 200`，通常 onResponse 有好幾種回傳結果
