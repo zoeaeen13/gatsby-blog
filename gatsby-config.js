@@ -90,6 +90,12 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              theme: 'Default Dark+'
+            }
+          }
         ],
       },
     },
@@ -141,17 +147,6 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [{
-          resolve: `gatsby-remark-vscode`,
-          options: {
-            theme: 'Default Dark+'
-          }
-        }]
-      }
-    },
     {
       resolve: `gatsby-plugin-disqus`,
       options: {

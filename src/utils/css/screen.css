@@ -416,11 +416,9 @@ body {
     justify-content: flex-start;
 }
 
-
 .life-post-wrap {
     width: 100%;
 }
-
 
 @media (max-width: 850px) {
     .post-feed, .coding-post-feed, .life-post-feed {

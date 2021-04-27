@@ -2,11 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { kebabCase } from 'lodash'
+import { PageTag as Tag, Divider } from "../components/tag"
 import { PostCard } from "../components/postType"
 
 const TagPageTemplate = ({pageContext, data, location}) => {
     const tag = pageContext.tag
-    const tagList = pageContext.tags
+    const tags = pageContext.tags
     const posts = data.allMarkdownRemark.edges
     const siteTitle = data.site.siteMetadata.title
 
@@ -30,6 +32,10 @@ const TagPageTemplate = ({pageContext, data, location}) => {
                 postClass={`post`}
               />
             )
+          })}
+          <Divider />
+          {tags.map((tag, index) => {
+            return <Tag key={index} to={`/tags/${kebabCase(tag)}`}>{tag}</Tag>
           })}
         </div>
       </Layout>

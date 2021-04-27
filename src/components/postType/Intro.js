@@ -43,7 +43,6 @@ const PostLink = styled(Link)`
   font-weight: bold;
   line-height: 1.4;
   letter-spacing: .48px;
-
   color: #666666;
   text-decoration: none;
   outline: none;

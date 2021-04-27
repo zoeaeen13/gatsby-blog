@@ -40,17 +40,17 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create blog posts pages.
     const posts = result.data.allMarkdownRemark.edges
-    const tagSet = new Set()
+    const postsByTags = {}
     const categorySet = new Set()
 
     posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
       // Get tags for tags pages.
       if (post.node.frontmatter.tags) {
         post.node.frontmatter.tags.forEach(tag => {
-          tagSet.add(tag);
+          if (!postsByTags[tag]) {
+            postsByTags[tag] = []
+          }
+          postsByTags[tag].push(post.node)
         });
       }
 
@@ -64,19 +64,21 @@ exports.createPages = ({ graphql, actions }) => {
         component: blogPost,
         context: {
           slug: post.node.fields.slug,
-          previous,
-          next,
+          previous: index === posts.length - 1 ? null : posts[index + 1].node,
+          next: index === 0 ? null : posts[index - 1].node,
         },
       })
     })
 
     // Create tags pages.
-    tagSet.forEach(tag => {
+    const tags = Object.keys(postsByTags)
+    tags.forEach(tag => {
       createPage({
         path: `/tags/${_.kebabCase(tag)}/`,
         component: tagPage,
         context: {
-          tag
+          tag,
+          tags: tags.sort()
         }
       })
     })
@@ -91,7 +93,6 @@ exports.createPages = ({ graphql, actions }) => {
         }
       })
     })
-
 
     return null
   })

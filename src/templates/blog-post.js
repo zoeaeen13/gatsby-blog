@@ -6,7 +6,7 @@ import { kebabCase } from 'lodash'
 import 'gatsby-remark-vscode/styles.css';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Tag from "../components/tag"
+import { BlogTag as Tag } from "../components/tag"
 import { DiscussionEmbed } from "disqus-react"
 
 const CommentWrapper = styled.div`
