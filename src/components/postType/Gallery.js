@@ -102,7 +102,7 @@ const PostDetail = styled.article`
     line-height: 32px;
   }
   h5 {
-    font-size: 13px;
+    font-size: 15px;
   }
 `
 

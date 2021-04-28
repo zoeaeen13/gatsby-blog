@@ -2,7 +2,7 @@
 title: 歐洲打工換宿｜不花錢在西班牙住上五個月
 type: blog
 category: 旅行日記
-tags: [西班牙,交換生活]
+tags: [西班牙,交換生活, 打工換宿]
 date: '2019-01-24'
 thumbnail: ./cover.jpeg
 ---
