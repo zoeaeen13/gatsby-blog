@@ -60,6 +60,12 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              theme: 'Visual Studio Dark'
+            }
+          },
+          {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               offsetY: `100`,
@@ -90,12 +96,6 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
-          {
-            resolve: `gatsby-remark-vscode`,
-            options: {
-              theme: 'Default Dark+'
-            }
-          }
         ],
       },
     },

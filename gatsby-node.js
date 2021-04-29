@@ -27,6 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
                 category
                 mark
                 description
+                log
               }
             }
           }

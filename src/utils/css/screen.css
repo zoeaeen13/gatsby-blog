@@ -50,6 +50,10 @@ body {
 /* Layout
 /* ---------------------------------------------------------- */
 
+/* .transition-fade {
+    display: inline;
+} */
+
 .site-wrapper {
     padding: 20px;
     min-height: 100vh;
@@ -629,7 +633,6 @@ body {
 }
 .post-content-body h6 {
     font-size: 1.5rem;
-
 }
 
 .post-content-body li {
@@ -740,6 +743,57 @@ body {
 
 .post-content-footer {
     margin: 5vh 0;
+}
+
+.post-content-list, .post-content-list *, .post-content-log, .post-content-log * {
+    /* border: 1px solid gold; */
+}
+
+.post-content-list {
+    position: fixed;
+    top: 15vh;
+    left: 5vw;
+    width: 20vw;
+}
+
+.post-content-list li {
+    width: 20vw;
+    float: left;
+    display: block;
+    /* list-style-type: '-'; */
+}
+
+.post-content-log ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3vh 0 6vh 0;
+    padding: 0;
+}
+
+.post-content-log li {
+    width: 40%;
+    list-style-type: decimal-leading-zero;
+    list-style-position: inside;
+    margin-top: 0;
+}
+
+.post-content-list a, .post-content-log a {
+    color: #414141;
+    transition: all 0.3s ease-in-out 0s;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.post-content-list a:hover, .post-content-log a:hover {
+    color: #666;
+    opacity: 0.4;
+}
+
+@media (max-width: 1024px) {
+    .post-content-list {
+        display: none;
+    }
 }
 
 .footnotes-sep {

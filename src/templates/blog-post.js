@@ -15,7 +15,8 @@ padding: 20px;
 background: #F6F6F6;
 `
 
-const BlogPostTemplate = ({ data, pageContext, uri, location}) => {
+const BlogPostTemplate = ({ data, uri, location}) => {
+  const tableOfContents = data.markdownRemark.tableOfContents
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const tags = post.frontmatter.tags
@@ -40,6 +41,8 @@ const BlogPostTemplate = ({ data, pageContext, uri, location}) => {
             <Link to={`/category/${kebabCase(post.frontmatter.category)}`} className="post-content-category">{post.frontmatter.category}</Link>
           </div>
         </header>
+        {post.frontmatter.log === 'log' && <div className="post-content-log" dangerouslySetInnerHTML={{__html: tableOfContents}} />}
+        {post.frontmatter.log === 'list' && <div className="post-content-list" dangerouslySetInnerHTML={{__html: tableOfContents}} />}
         <div
           className="post-content-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -78,6 +81,7 @@ export const pageQuery = graphql`
         date(formatString: "MMM DD, YYYY")
         tags
         category
+        log
         thumbnail {
           childImageSharp {
             fluid(maxWidth: 1360) {

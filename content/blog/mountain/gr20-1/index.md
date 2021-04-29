@@ -17,7 +17,7 @@ thumbnail: ./cover.jpeg
 
 **15天，GR20由北到南，總上升12800m、總下降12600m。**
 
-### 北段九天】
+### 北段九天
 
 6/17（一）科西嘉島 Calvi 機場七點半會合 → 搭計程車前往 Calenzana 露營區 C0
 
@@ -39,7 +39,7 @@ thumbnail: ./cover.jpeg
 
 6/26（三）Refuge de l'Onda 山屋 C8 → 1800m 平台 → 紀念牌 → 山頂 Muratellu(2020m) → 匯流口 → 過溪流 → 木棧橋 → 木椅平台 → 南北分界路牌 → L'Alzarella Vizzavona 住宿點 C9
 
-### 南段六天】
+### 南段六天
 
 6/27（四）L'Alzarella Vizzavona 住宿點 C9 → 路牌指示 GR20 Sud → 平台，三岔路選中間 → 溪流旁 → 小農莊 → 水瀑 → Gite U Fugone 草坪隨意紮營
 
