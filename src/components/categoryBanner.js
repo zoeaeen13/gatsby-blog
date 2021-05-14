@@ -5,6 +5,7 @@ import yogaImg from '../images/category/yoga.jpeg'
 import mountainImg from '../images/category/mountain.jpeg'
 import kotlinImg from '../images/category/kotlin.jpeg'
 import lidemyImg from '../images/category/lidemy.png'
+import taitungImg from '../images/category/taitung.jpeg'
 import travelImg from '../images/category/travel.jpeg'
 import weeklyJournalImg from '../images/category/weeklyjournal.jpeg'
 
@@ -43,6 +44,9 @@ const CategoryBanner = ({ category }) => {
       break;
     case 'Weekly Journal':
       img = weeklyJournalImg
+      break;
+    case '宅在台東的一百種生活':
+      img = taitungImg
       break;
     default:
       break;

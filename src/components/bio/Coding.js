@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 import AvatarImg from '../../images/avatar.jpeg'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faTwitter, faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const Wrapper = styled.section`
   display: flex;
@@ -80,8 +80,8 @@ function CodingBio() {
             <AuthorTitle to="/about">{`老余 ${author}`}</AuthorTitle>
             <p>Web Developer. I make Application for better life.</p>
             <LinkWrap>
-              <a href={`https://www.facebook.com/${social.facebook}`}>
-                <FontAwesomeIcon icon={faFacebookSquare}/>
+              <a href={'https://www.linkedin.com/in/meng-hua-yu/'}>
+                <FontAwesomeIcon icon={faLinkedin}/>
               </a>
               <a href={`https://twitter.com/${social.twitter}`} >
                 <FontAwesomeIcon icon={faTwitter}/>

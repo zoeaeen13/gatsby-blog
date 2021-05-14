@@ -2,7 +2,7 @@
 title: 一月的我
 type: life
 category: 旅行日記
-tags: [西班牙,交換生活]
+tags: [西班牙]
 date: "2019-02-06"
 thumbnail: ./cover.jpeg
 ---

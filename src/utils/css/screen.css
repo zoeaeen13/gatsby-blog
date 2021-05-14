@@ -610,7 +610,7 @@ body {
 }
 
 .post-content-body {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 27px;
     letter-spacing: .48px;
@@ -928,3 +928,45 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.post-content-about article {
+    font-size: 1.3rem;
+    display: inline-block;
+    width: 50%;
+    padding: 5px 15px;
+    vertical-align: top;
+}
+
+.post-content-about h4 {
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.post-content-about a  {
+    text-decoration: underline;
+    color: #4a4a4a;
+    transition: all 0.3s ease-in-out 0s;
+    letter-spacing: 1px;
+}
+
+.post-content-about a:hover {
+    opacity: 0.4;
+}
+
+.post-content-about li {
+    list-style-type: decimal-leading-zero;
+    list-style-position: inside;
+}
+
+.post-content-about li span {
+    font-size: .9rem;
+    margin: 0 10px;
+}
+
+@media (max-width: 850px) {
+    .post-content-about article {
+        width: 100%;
+    }
+}
+

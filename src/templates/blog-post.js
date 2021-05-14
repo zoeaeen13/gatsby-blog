@@ -37,7 +37,7 @@ const BlogPostTemplate = ({ data, uri, location}) => {
         <header className="post-content-header">
           <h1 className="post-content-title">{post.frontmatter.title}</h1>
           <div>
-            <h5 className="post-content-date">{post.frontmatter.date}</h5>
+            {post.frontmatter.type !== 'log' && <h5 className="post-content-date">{post.frontmatter.date}</h5>}
             <Link to={`/category/${kebabCase(post.frontmatter.category)}`} className="post-content-category">{post.frontmatter.category}</Link>
           </div>
         </header>
@@ -48,7 +48,7 @@ const BlogPostTemplate = ({ data, uri, location}) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <footer className="post-content-footer">
-          {tags.map((tag, index) => <Tag key={index} to={`/tags/${kebabCase(tag)}`} >{tag}</Tag>)}
+          {tags && tags.map((tag, index) => <Tag key={index} to={`/tags/${kebabCase(tag)}`} >{tag}</Tag>)}
           <CommentWrapper>
             <DiscussionEmbed {...disqusConfig} />
           </CommentWrapper>
@@ -78,6 +78,7 @@ export const pageQuery = graphql`
       )
       frontmatter {
         title
+        type
         date(formatString: "MMM DD, YYYY")
         tags
         category
