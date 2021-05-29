@@ -19,7 +19,7 @@ production stylesheet in assets/built/screen.css using gulp dev
 @import "components/actions.css";
 @import "components/hamburger.css";
 @import "components/animations.css";
-
+@import "./projects.css";
 
 /* Main - Theme styles
 /* ---------------------------------------------------------- */
@@ -760,6 +760,7 @@ body {
     width: 20vw;
     float: left;
     display: block;
+    margin: 5px;
     /* list-style-type: '-'; */
 }
 
@@ -969,4 +970,3 @@ body {
         width: 100%;
     }
 }
-

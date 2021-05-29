@@ -80,7 +80,7 @@ function CodingBio() {
             <AuthorTitle to="/about">{`老余 ${author}`}</AuthorTitle>
             <p>Web Developer. I make Application for better life.</p>
             <LinkWrap>
-              <a href={'https://www.linkedin.com/in/meng-hua-yu/'}>
+              <a href={''}>
                 <FontAwesomeIcon icon={faLinkedin}/>
               </a>
               <a href={`https://twitter.com/${social.twitter}`} >

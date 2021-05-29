@@ -2,7 +2,7 @@
 title: Android - 第一次 MVVM 就上手
 type: coding
 category: Android
-tags: [Kotlin, MVVM]
+tags: [Kotlin]
 description: 了解 Model-View-ViewModel 觀念，與 MVC 架構的不同之處、LiveData 特性及使用方式
 date: '2020-03-04'
 ---

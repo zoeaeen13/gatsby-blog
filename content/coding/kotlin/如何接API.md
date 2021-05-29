@@ -2,7 +2,7 @@
 title: 新手上路，如何接 API 呢？
 type: coding
 category: Android
-tags: [Kotlin, API]
+tags: [Kotlin]
 description: 學習從 Retrofit 2 下手
 date: '2019-11-11'
 ---

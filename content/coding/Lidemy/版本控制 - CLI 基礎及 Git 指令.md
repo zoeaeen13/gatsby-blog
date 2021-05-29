@@ -1,5 +1,5 @@
 ---
-title: Command Line 及 git 指令
+title: '[第一週] Command Line 及 git 指令'
 type: coding
 category: 程式導師計畫
 tags: [git, Lidemy]
@@ -10,7 +10,7 @@ date: '2020-06-05'
 對電腦下指令，CLI 是一種操縱電腦的方法，不像 GUI 圖形使用者介面可點擊，是用文字形式
 * 有些功能只能用 Command Line 操作程式，且比較快
 * Git、執行 JS
-* 連結 server 會用到（因為沒有畫面）
+* 連結 server 會用到（沒有畫面）
 
 | 指令 | 名稱 | 功能 |
 | -------- | -------- | -------- |
@@ -74,7 +74,9 @@ echo file.md > print.txt
 
 ---
 #Git 
-用來做**版本控制**。一般人做版本控制都是以「檔案」為單位，例如複製貼上，**不直觀**，因為寫程式時，需要知道程式碼誰寫的、什麼時候改的、為什麼要改這行
+用來做**版本控制**。
+
+一般人做版本控制都是以「檔案」為單位，例如複製貼上，**不直觀**，因為寫程式時，需要知道程式碼誰寫的、什麼時候改的、為什麼要改這行。
 * 希望每一個版本被保存起來，檔案多了要管理
 * 在軟體開發常用
 * 透過 commit message 可以看到以前的歷史紀錄、和上一版差異
@@ -94,7 +96,7 @@ echo file.md > print.txt
 
 > 一些 Git 問題
 
-###Q: 開始進行版控？
+###### Q: 開始進行版控？
 * `git init` 會在資料夾建立一個 .git 目錄，整個版控的精華就在這裡面
 * 空的目錄是無法被提交的，因為 Git 在計算、產生物件的時候，是根據「檔案變化的內容」去做計算的，內容不可以為空
 
@@ -103,7 +105,7 @@ $ git  init
 Initialized empty Git repository
 ```
 
-###Q: 版控的流程，暫存區和儲存區？
+###### Q: 版控的流程，暫存區和儲存區？
 用來查詢現在這個目錄的「狀態」
 
 ```html
@@ -126,14 +128,14 @@ $ git add *.html
 $ git add --all 或 git add .
 ```
 
-###Q: 到底 git add --all 和 git add . 指令差別在？
+###### Q: 到底 git add --all 和 git add . 指令差別在？
 差別在於，使用 Git 版本不同以及**執行指令的目錄位置**，後者只將當前目錄的所有檔案和子目錄內的檔案變更加入，前者是無論目前處於哪一層目錄，專案裡所有的異動都會被加至暫存區
 
 
-###Q: 如果在 git add 之後又修改了那個檔案？
+###### Q: 如果在 git add 之後又修改了那個檔案？
 編輯內容並沒有再次被加到暫存區，得再次使用 git add 指令加至暫存區
 
-###Q: 存放到儲存區（Repository）？
+###### Q: 存放到儲存區（Repository）？
 要完成 commit 指令才算是完成整個流程，而 commit 都只會處理暫存區（Staging Area）裡的內容
 * 加參數 `-m` 訊息，則不用進入 VIM 就能 commit
 不小心跳入 VIM 視窗的話，參考[簡易操作Vim](https://gitbook.tw/chapters/command-line/vim-introduction.html)
@@ -141,7 +143,7 @@ $ git add --all 或 git add .
 * `git add -am "message"` 合併 `git add` 和 `git commit` 兩個指令
 
 
-###Q: 如何刪除檔案？
+###### Q: 如何刪除檔案？
 在 Git 裡，不管是刪除檔案或是變更檔名，對 Git 來說都是一種「修改」
 1. 系統指令 `rm`，刪除檔案 X.html
 
@@ -177,13 +179,13 @@ rm 'X.html'
 X.html 的狀態從原本已經在目錄裡的 tracked 變成 Untracked 了
 
 
-###Q: 什麼時候應該要 Commit？
+###### Q: 什麼時候應該要 Commit？
 * 完成一個「任務」的時候
 * 下班的時候，可能還沒完全搞定任務，但至少先 Commit 今天進度，除了備份之外，也讓公司知道你今天有在努力工作(?)
 * 你想要 Commit 的時候就可以
 * 盡量細切 commit，把每個小功能做一次 commit
 
-###Q: 更改 Commit 紀錄，使用 `--amend` 參數
+###### Q: 更改 Commit 紀錄，使用 `--amend` 參數
 修改近期一次的 Commit Message
 改訊息就是修改了一次的歷史，**盡量不要在已經 Push 出去之後再修改**，可能會造成其它協作者困擾
 
@@ -198,7 +200,7 @@ $ git commit --amend --no-edit
 ```
 
 
-###Q: 用 git log 查詢 commit
+###### Q: 用 git log 查詢 commit
 查詢某些人的 Commit，例如協作者名為「Meng」
 
 ```html
@@ -211,7 +213,7 @@ $ git log --oneline --author="Meng22"
 $ git log --oneline --grep="hahaha"
 ```
 
-###Q: 如何邊緣某些檔案
+###### Q: 如何邊緣某些檔案
 
 ```html
 touch .gitignore   建立 .gitignore 檔案
@@ -231,13 +233,13 @@ config/database.yml
 ```
 
 
-###Q: 拿到一個新專案的步驟
+###### Q: 拿到一個新專案的步驟
 1. 加入版本控制 git init
 2. 建立 .gitignore 排除需要忽略的檔案，.gitignore 檔案也需要加入版控（其他協作者才知道）
 3. 用 `git add .` 加入檔案，因為是新增的檔案，不能直接用`git comiit -am` （他們還不在 staging 區）
 4. 但如果是已經加入過、修改的檔案，可直接用上面那個合併指令
 
-##認識 branch
+#### 認識 branch
 在增加新功能、修正 Bug，或是想試一些新做法時，都可以另外做一個分支來進行，待做完確認沒問題之後再合併回來，不會影響正在運行的功能
 
 ```html
@@ -282,7 +284,7 @@ git merge tiger
 ```
 
 
-###Q: Merge 合併時發生衝突（Conflict）
+###### Q: Merge 合併時發生衝突（Conflict）
 
 ```html
 git merge bear
@@ -314,7 +316,7 @@ Changes not staged for commit:
 ```
 
 
-###Q: 我剛剛 Commit 了，但我想要拿掉！
+###### Q: 我剛剛 Commit 了，但我想要拿掉！
 
 ```html
 $ git reset
@@ -346,4 +348,4 @@ Reset 指令可以搭配參數使用，有三種模式：
 * `--soft`
 工作目錄跟暫存區的檔案都不會被丟掉，所以看起來就只有 HEAD 的移動
 * `--hard`
-工作目錄和暫存區的檔案都會丟掉。
+工作目錄和暫存區的檔案都會丟掉

@@ -1,15 +1,16 @@
 ---
-title: 初識 JavaScript
+title: '[第二週] 初識 JavaScript'
 type: coding
 category: 程式導師計畫
-tags: [JavaScript,Lidemy]
+tags: [JavaScript, Lidemy]
 description: JavaScript 基本觀念、變數及運算子
 date: '2020-07-03'
 ---
-##JavaScript
+
 早期只能用在瀏覽器，透過它去操控畫面上的東西，瀏覽器會提供給 JS 一些方法。**JS 不能單獨執行，一定要有一個執行環境存在**，目前多數情況不是使用瀏覽器就是用 Node.js：
 
 * Node.js
+
 並非程式語言，而是一種執行環境（Runtime），是可以讓 JS 在非瀏覽器的地方運行，這個執行環境會提供 JS 操控需要的方法，和 Chrome 一樣核心使用高速的 V8 JavaScript 引擎，可以運行於一般常見的各種作業系統平台上。
 
 不同的執行環境（Runtime）會提供不同的功能，或者同樣的方法、但呈現方式不同。
@@ -44,18 +45,19 @@ date: '2020-07-03'
 
 ###Q: 如何比較好理解 Runtime？
 
-直譯就是運行時間，run（跑、運行）time（時間）是一套比較底層的純 C 語言。在 stackoverflow 上有相關的討論「[What is "runtuime"?](https://stackoverflow.com/questions/3900549/what-is-runtime)」其中一段我認為比較好的解釋：
+直譯就是運行時間，run（跑、運行）time（時間）是一套比較底層的純 C 語言。在 stackoverflow 上有相關的討論「[What is runtuime?](https://stackoverflow.com/questions/3900549/what-is-runtime)」其中一段我認為比較好的解釋：
 
 >*Runtime describes software/instructions that are executed while your program is running, especially those instructions that you did not write explicitly, but are necessary for the proper execution of your code.
 >
->*Runtime 描述軟體程式/指令在你的程式運行的時候是如何執行的，尤其是那些你沒有明確寫出來，卻對於正確執行程式碼是必須的指令。*
+>*Runtime，描述軟體程式/指令在你的程式運行的時候是如何執行的，尤其是那些你沒有明確寫出來，卻對於正確執行程式碼是必須的指令。*
 
 我個人理解成平常我們可能會使用 JavaScript、OC、Python 各種語言，在執行的時候（Runtime）都會轉成電腦看得懂的形式、和電腦進行合作。
+
 就是像中間的翻譯一樣，我們需要 Runtime Library 來實現程式運行時需要的一切指令，它會對所面對的程式語言，提供其基本**執行時需求**，像是創建類別、屬性方法、支援函式，並與作業系統合作支援例如數學運算、輸入輸出等基本功能。
 
 ---
 
-###變數（Variable）
+#### 變數（Variable）
 * 資料(值)的存放角色。和常數不同，想像變數是一個**暫時存放值**的盒子，而盒子是打開的，可以更動或抽換裡面的東西
 * 記住：**宣告變數**和**定義變數**是分開的
     - 宣告變數：`var foo`、`let foo`、`const foo`，ES6 之後有三種[宣告方式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Grammar_and_types)，之前只有定義變數沒有定義常數的方式
@@ -63,7 +65,7 @@ date: '2020-07-03'
     - 定義變數稱為**賦值**，宣告變數時如果沒有賦值的話，預設是 undefined
 
 
-####變數的命名規則
+###### 變數的命名規則
 * 數字不可用於開頭字元
 * 不可使用 JavaScript [保留字](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Future_reserved_keywords)，如 var、return 等
 * 又稱為 identifier，取名稱要有**識別性**，最好讓人一眼判斷這個變數代表什麼、要做什麼事
@@ -83,7 +85,7 @@ name、description、label、text
 // 常用的函式開頭（動詞+名詞）
 setColor、removeAll、printText、addItem
 ```
-####基本符號
+###### 基本符號
 
 | 符號 | 名稱 | 用法 |
 | -------- | -------- | -------- |
@@ -93,7 +95,7 @@ setColor、removeAll、printText、addItem
 | "" | 雙引號 | 用於字串的宣告 |
 | '' | 單引號 | 在 JavaScript 中也用於字串的宣告 |
 
-####運算子（Operators）
+###### 運算子（Operators）
 
 對變數或值進行操作的字元，例如 `x + y = z` 其中的 = 和 + 符號。
 
