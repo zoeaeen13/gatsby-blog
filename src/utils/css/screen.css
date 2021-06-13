@@ -693,7 +693,7 @@ body {
 
 .post-content-body pre {
     overflow-x: auto;
-    margin: 1.5em 0 3em;
+    margin: 1.5em 0;
     padding: 20px;
     max-width: 100%;
     border: color(var(--color-base) l(-10%)) 1px solid;
@@ -738,7 +738,12 @@ body {
 
 .post-content-body .highlight {
     border-radius: 4px;
+    padding: 0 3px;
     background: rgba(255, 214, 1, .5)
+}
+
+.post-content-body center {
+    margin-top: -1.5em;
 }
 
 .post-content-footer {
@@ -747,21 +752,28 @@ body {
 
 .post-content-list, .post-content-list *, .post-content-log, .post-content-log * {
     /* border: 1px solid gold; */
+    margin: 0;
+    padding: 0;
 }
 
 .post-content-list {
     position: fixed;
     top: 15vh;
-    left: 5vw;
-    width: 20vw;
+    left: 20px;
+    max-width: calc((100% - 720px)/2 - 30px);
 }
 
 .post-content-list li {
-    width: 20vw;
+    width: 92%;
     float: left;
     display: block;
-    margin: 5px;
+    word-wrap:break-word;
+    margin-bottom: 3px;
     /* list-style-type: '-'; */
+}
+
+.post-content-list li {
+    margin-left: 15px;
 }
 
 .post-content-log ul {

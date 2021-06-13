@@ -8,6 +8,7 @@ import lidemyImg from '../images/category/lidemy.png'
 import taitungImg from '../images/category/taitung.jpeg'
 import travelImg from '../images/category/travel.jpeg'
 import weeklyJournalImg from '../images/category/weeklyjournal.jpeg'
+import modernReactwithRedux from '../images/category/modern-react-with-redux.jpeg'
 
 const ImageContainer = styled(Link)`
   background-position: center;
@@ -47,6 +48,9 @@ const CategoryBanner = ({ category }) => {
       break;
     case '宅在台東的一百種生活':
       img = taitungImg
+      break;
+    case 'Modern React with Redux':
+      img = modernReactwithRedux
       break;
     default:
       break;
