@@ -5,7 +5,7 @@ log: 'log'
 category: Modern React with Redux
 tags: [React, Udemy]
 description: '基本觀念、開始建立專案及 React 和 ReactDOM 差別'
-date: '2021-06-10'
+date: '2021-06-11'
 ---
 
 #### Overview
@@ -53,26 +53,29 @@ ReactDOM.render(<App />, document.getElementById("root"))
  
 最早在 v0.14 之前是沒有 ReactDOM 的，所有功能都包含在 React library 裡面，而分開的原因很簡單，因為後來出現了 ReactNative，於是兩者拆分出來，React library 只包含通用的核心部分，跟 Web DOM 有關的操作就被移到了 ReactDOM library 中
 
-![](https://i.imgur.com/6A9HxeZ.jpg)
-
-`ReactDOM.render` 裡面的參數：
+> `ReactDOM.render` 裡面的參數
 
 - 第一個參數，是調用組件函數（通常是 `<App />`）、拿到 JSX
 - 第二個參數，決定在 index.html 裡的哪個元素來展現內容
 
+![](https://i.imgur.com/6A9HxeZ.jpg)
+
+
 ---
 
 #### 建立專案
-```html
-npm install -g create-react-app
-create-react-app [my-project-name]
-```
+
 - `npm`：套件管理器，可以將大量的開源專案安裝到自己的專案上
 - `install`：sub command
 - `-g`：全域
 - `create-react-app`：套件名稱，用來產生新的 React 專案
 
 ![](https://i.imgur.com/jA6uaOk.png)
+
+```html
+npm install -g create-react-app
+create-react-app [my-project-name]
+```
 
 
 官方文件是提供以下指令來建立專案，不過可能因 node 過舊而出現版本問題
@@ -81,21 +84,26 @@ create-react-app [my-project-name]
 npx create-react-app [my-project-name]
 ```
 
+---
+
+<br>
+<br>
 
 > 初始檔案結構
 
-- `/src` 主要開發的地方，一開始會有一些預設檔案，可以都刪掉
-- `/public` 放置靜態檔案 static files
+`/src` 主要開發的地方，開始的預設檔案可以刪掉
+
+`/public` 放置靜態檔案 static files
 
 <br/>
 
 
 > 基本的 index.js
 
-1. 引入需要的 libraries
+1. 引入需要的 library
 2. 建立 component 組件
     - 可以是 Class 或 Function，他們目的都是產出 JSX
-    - 次要功能是進行事件處理
+    - 進行事件處理
 3. 將其渲染到畫面上，使用 `ReactDOM.render()` 方法
 
 ```javascript

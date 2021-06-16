@@ -19,7 +19,7 @@ production stylesheet in assets/built/screen.css using gulp dev
 @import "components/actions.css";
 @import "components/hamburger.css";
 @import "components/animations.css";
-@import "./projects.css";
+@import "projects.css";
 
 /* Main - Theme styles
 /* ---------------------------------------------------------- */
@@ -781,10 +781,11 @@ body {
     flex-wrap: wrap;
     margin: 3vh 0 6vh 0;
     padding: 0;
+    gap: 5px;
 }
 
 .post-content-log li {
-    width: 40%;
+    width: 45%;
     list-style-type: decimal-leading-zero;
     list-style-position: inside;
     margin-top: 0;
