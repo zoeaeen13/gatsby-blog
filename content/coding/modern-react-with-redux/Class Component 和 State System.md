@@ -1,5 +1,5 @@
 ---
-title: 'CH4/5：Class Component 和 State System'
+title: 'Class Component 和 State System'
 type: coding
 category: Modern React with Redux
 tags: [React, Udemy]
@@ -65,7 +65,7 @@ class App extends React.Component {
 - state 是一個 JS 物件，會存放和元件有關的 data
 - state 要在創建元件時就被初始化
 - state 只能透過 `setState` 方法更新，不能用一般 JavaScript 習慣的賦值
-- 更新 state 狀態會促使 component 重新渲染 => 換句話說，想要讓畫面變動，要透過 `setState` 方法來更新 state
+- 更新 state 狀態會使元件及其子元件重新渲染 => 換句話說，想要讓畫面變動，要透過 `setState` 方法來更新
 
 
 <br>

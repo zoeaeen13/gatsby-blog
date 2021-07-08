@@ -1,5 +1,5 @@
 ---
-title: 'CH2/3：認識 JSX 和 Component 特性'
+title: '認識 JSX 和 Component 特性'
 type: coding
 log: 'log'
 category: Modern React with Redux

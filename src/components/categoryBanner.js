@@ -51,6 +51,7 @@ const CategoryBanner = ({ category }) => {
       break;
     case 'Modern React with Redux':
       img = modernReactwithRedux
+      link = 'https://www.udemy.com/share/101WcYAEceeVtQRH8F/'
       break;
     default:
       break;

@@ -1,5 +1,5 @@
 ---
-title: 'CH1：React 概述'
+title: '[筆記] Modern React with Redux：概述'
 type: coding
 log: 'log'
 category: Modern React with Redux
