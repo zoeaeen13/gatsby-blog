@@ -1,5 +1,5 @@
 ---
-title: React：Class component 與 Functional component 的差別
+title: '[第二十二週] Class component 與 Functional component 的差別'
 type: coding
 category: 程式導師計畫
 tags: [React,Lidemy]

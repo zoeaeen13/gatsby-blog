@@ -9,6 +9,7 @@ import taitungImg from '../images/category/taitung.jpeg'
 import travelImg from '../images/category/travel.jpeg'
 import weeklyJournalImg from '../images/category/weeklyjournal.jpeg'
 import modernReactwithRedux from '../images/category/modern-react-with-redux.jpeg'
+import understandingWeirdParts from '../images/category/understanding-the-weird-parts.jpeg'
 
 const ImageContainer = styled(Link)`
   background-position: center;
@@ -52,6 +53,10 @@ const CategoryBanner = ({ category }) => {
     case 'Modern React with Redux':
       img = modernReactwithRedux
       link = 'https://www.udemy.com/share/101WcYAEceeVtQRH8F/'
+      break;
+    case 'JavaScript 全攻略：克服JS 的奇怪部分':
+      img = understandingWeirdParts
+      link = 'https://www.udemy.com/course/understand-javascript/'
       break;
     default:
       break;

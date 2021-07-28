@@ -1,5 +1,5 @@
 ---
-title: 'React Lifecycle：認識生命週期方法及觸發時間點'
+title: '[第二十二週] React Lifecycle：認識生命週期方法'
 type: coding
 category: 程式導師計畫
 tags: [React,Lidemy]

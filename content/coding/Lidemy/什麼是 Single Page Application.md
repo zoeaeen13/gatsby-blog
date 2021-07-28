@@ -1,10 +1,10 @@
 ---
-title: 什麼是 Single Page Application
+title: '[第十二週] 什麼是 Single Page Application'
 type: coding
 category: 程式導師計畫
 tags: [JavaScript,Lidemy]
 description: 了解 SPA 架構及其優缺點
-date: '2020-10-11'
+date: '2020-10-16'
 ---
 
 單頁應用程式 single-page application，簡單來說，它一改以往 Multi-page（多頁式）的設計模式：每點選一個按鈕、進行一個動作，就得重新載入另外一個頁面的操作。SPA 架構下，除了第一次需要全畫面渲染，之後網頁「**不需跳轉頁面**」就可以達到基本的建立、讀取、修改、刪除功能，透過「動態」重寫部分頁面的方式，提高使用者體驗。

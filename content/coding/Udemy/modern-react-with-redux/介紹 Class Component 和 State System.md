@@ -1,5 +1,5 @@
 ---
-title: 'Class Component 和 State System'
+title: '介紹 Class Component 和 State System'
 type: coding
 category: Modern React with Redux
 tags: [React, Udemy]
